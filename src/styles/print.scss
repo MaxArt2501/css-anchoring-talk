@@ -1,0 +1,34 @@
+@page {
+	margin: max((21cm - 29.4cm / var(--slide-aspect-ratio, 1.777777)) / 2, 0) 0 !important;
+}
+
+body > :not(p-deck, svg) {
+	display: none !important;
+}
+
+[p-effect~="to-be-trashed"] {
+	transform: translate(13em, -1em) scale(.8, .6);
+	z-index: 1;
+	opacity: .9;
+}
+[p-effect~="tip-and-catch"] {
+	rotate: -45deg;
+}
+[p-effect~="arrow"] {
+	marker-end: url('#arrow-head');
+}
+
+.cursor {
+	--cursor-duration: 0s;
+	animation-name: cursor-form-2 !important;
+}
+
+.big-x {
+	&::before, &::after {
+		padding-inline-end: 0;
+	}
+}
+
+[data-popover-type=autocomplete]:not(#a#b)::before {
+	animation: none;
+}

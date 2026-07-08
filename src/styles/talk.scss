@@ -1,0 +1,389 @@
+@use './variables.scss' as vars;
+
+:root {
+	--overshoot: linear(0, 1.32 16%, 0.87 28%, 1.05 44%, 0.98 59%, 1.01 73%, 1 88%, 1);
+	--bounce: linear(
+		0,
+		0.004,
+		0.016,
+		0.035,
+		0.063,
+		0.098,
+		0.141 13.6%,
+		0.25,
+		0.391,
+		0.563,
+		0.765,
+		1,
+		0.891 40.9%,
+		0.848,
+		0.813,
+		0.785,
+		0.766,
+		0.754,
+		0.75,
+		0.754,
+		0.766,
+		0.785,
+		0.813,
+		0.848,
+		0.891 68.2%,
+		1 72.7%,
+		0.973,
+		0.953,
+		0.941,
+		0.938,
+		0.941,
+		0.953,
+		0.973,
+		1,
+		0.988,
+		0.984,
+		0.988,
+		1
+	);
+	--wc-bg: linear-gradient(-150deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+}
+
+p-deck {
+	--sliding-duration: 0s;
+}
+
+.redacted {
+	font-family: 'Redacted Script';
+}
+
+.big-x {
+	position: absolute;
+	aspect-ratio: 4 / 3;
+	display: grid;
+	opacity: 1;
+
+	&::before,
+	&::after {
+		content: '';
+		background-size: 100% 20%;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-clip: content-box;
+		filter: saturate(0.8);
+		box-sizing: border-box;
+		grid-area: 1 / 1;
+		padding-inline-end: 100%;
+		transition: padding-inline-end calc(var(--fragment-duration) / 2);
+	}
+	&::before {
+		background-image: url(../img/brush-stroke-1.png);
+		transform: rotate(-30deg);
+	}
+	&::after {
+		background-image: url(../img/brush-stroke-2.png);
+		transform: rotate(30deg);
+	}
+
+	&[aria-hidden='false'] {
+		&::before,
+		&::after {
+			padding-inline-end: 0%;
+		}
+		&::after {
+			transition-delay: calc(var(--fragment-duration) / 2);
+		}
+	}
+}
+
+@keyframes from-below {
+	from {
+		translate: 0 100%;
+	}
+	to {
+		translate: 0 0;
+	}
+}
+
+text {
+	font-family: vars.$monospace-font;
+	font-size: 5px;
+	font-weight: bold;
+	text-anchor: middle;
+	alignment-baseline: middle;
+}
+
+:is(line, path, polyline, polygon):is(.arrow, [p-effect~='arrow']) {
+	fill: none;
+	&.double {
+		marker-start: url('#arrow-head');
+	}
+	&:not([stroke]) {
+		stroke: #000;
+	}
+	&:not([p-effect~='arrow']), &[aria-hidden='false'] {
+		marker-end: url('#arrow-head');
+	}
+	&[p-effect~='drawing'] {
+		transition-property: --fragment-progress, marker-end;
+		transition-behavior: allow-discrete;
+	}
+}
+
+g.shiki {
+	font-size: 5px;
+	line-height: 1.125;
+	font-family: vars.$monospace-font;
+
+	text {
+		text-anchor: start;
+		dominant-baseline: text-before-edge;
+		font-size: inherit;
+		font-family: inherit;
+	}
+}
+
+.overlay-banner {
+	position: absolute;
+	inset: 0;
+	margin-block: auto;
+	height: fit-content;
+	background-color: rgba(black, 0.5);
+	color: white;
+	text-shadow: 0 0.1em 0.2em rgba(black, 0.5);
+	text-align: center;
+	line-height: 1.5;
+	z-index: 10;
+}
+
+hgroup {
+	background: var(--wc-bg) 0 0/.5em auto no-repeat;
+	padding-inline-start: 1em;
+
+	> p {
+		font-size: 150%;
+	}
+}
+:is(hgroup, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6) strong {
+	background: var(--wc-bg);
+	background-clip: text;
+	color: transparent;
+}
+
+.browser-logo {
+	height: 1em;
+}
+
+.flowchart {
+	display: grid;
+	grid-template-columns: repeat(var(--columns, 1), minmax(0, min-content));
+	text-align: center;
+	--arrow-size: .4em;
+	--line-size: .1em;
+	--margin-block: .5em;
+	--margin-inline: 1em;
+	--border-width: .1em;
+	--border-color: currentColor;
+
+
+	> * {
+		border: var(--border-width) solid;
+		position: relative;
+		margin: var(--margin-block) var(--margin-inline);
+		padding: .25em .5em;
+		align-content: center;
+	}
+	.start, .end {
+		border-radius: 100vmax;
+	}
+	.start {
+		background: lime;
+	}
+	.end {
+		background: #f88;
+	}
+	.process {
+		background: yellow;
+	}
+	.decision {
+		--_gradient: transparent 50%, var(--border-color) 0, calc(50% + var(--border-width)), var(--bg-color, #ccc) 0;
+		--margin-block: .25em;
+		--margin-inline: .5em;
+		padding: .5em 1em;
+		border: none;
+		background: linear-gradient(to bottom right, var(--_gradient)) 0 0/50% 50% no-repeat,
+			linear-gradient(to top left, var(--_gradient)) 100% 100%/50% 50% no-repeat,
+			linear-gradient(to bottom left, var(--_gradient)) 100% 0/50% 50% no-repeat,
+			linear-gradient(to top right, var(--_gradient)) 0 100%/50% 50% no-repeat;
+		.arrow {
+			--border-width: 0em;
+		}
+	}
+	.input-output {
+		--border-width: 0em;
+		padding-block: .35em;
+		> * { position: relative; }
+
+		&::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			border: .1em solid;
+			background: #3cc1ff;
+			transform: skewX(-20deg);
+		}
+	}
+	.database {
+		border-radius: 50% / .5em;
+		padding-top: 1em;
+		&::before {
+			content: '';
+			position: absolute;
+			inset: 0.4em -.1em auto;
+			height: .4em;
+			border: inherit;
+			border-top: none;
+			border-bottom-left-radius: inherit;
+			border-bottom-right-radius: inherit;
+		}
+	}
+	.document {}
+	.manual-input {}
+	.preparation {
+		padding-inline: 0;
+		border-inline: none;
+		--margin-inline: 1.5em;
+		background-color: var(--bg-color, #d78cdf);
+		--_gradient: transparent 50%, var(--border-color) 0, calc(50% + var(--border-width)), var(--bg-color, #d78cdf) 0;
+		&::before, &::after {
+			content: '';
+			position: absolute;
+			aspect-ratio: 1 / 2;
+			height: calc(100% + .2em);
+			top: -.1em;
+		}
+		&::before {
+			right: 100%;
+			background: linear-gradient(135deg, var(--_gradient)) 0 0 / 100% 50% no-repeat,
+				linear-gradient(45deg, var(--_gradient)) 0 100% / 100% 50% no-repeat;
+		}
+		&::after {
+			left: 100%;
+			background: linear-gradient(225deg, var(--_gradient)) 0 0 / 100% 50% no-repeat,
+				linear-gradient(-45deg, var(--_gradient)) 0 100% / 100% 50% no-repeat;
+		}
+	}
+	.none {
+		--border-width: 0em;
+		min-height: var(--arrow-size);
+		.in {
+			&.left::before { inset-inline: auto 0em; }
+			&.right::before { inset-inline: 0em auto; }
+			&.top::before { inset-block: auto 0em; }
+			&.bottom::before { inset-block: 0em auto; }
+		}
+	}
+
+	.arrow {
+		position: absolute;
+		background-color: currentColor;
+		z-index: -1;
+		transition-delay: var(--fragment-duration);
+
+		&.in::before {
+			content: '';
+			position: absolute;
+			background: inherit;
+			width: var(--arrow-size);
+			height: var(--arrow-size);
+		}
+		&.top, &.bottom {
+			width: .1em;
+			inset-inline: calc(50% - var(--line-size) / 2);
+			&::before {
+				inset-inline: 50%;
+				translate: -50% 0;
+			}
+		}
+		&.top {
+			inset-block: calc(0em - var(--margin-block) - var(--border-width)) calc(50% - var(--line-size) / 2);
+			&::before {
+				inset-block: calc(var(--margin-block) + var(--line-size) / 2 - var(--arrow-size)) auto;
+				clip-path: polygon(0 0, 100% 0, 50% 100%);
+			}
+		}
+		&.bottom {
+			inset-block: calc(50% - var(--line-size) / 2) calc(0em - var(--margin-block) - var(--border-width));
+			&::before {
+				inset-block: auto calc(var(--margin-block) + var(--line-size) / 2 - var(--arrow-size));
+				clip-path: polygon(50% 0, 100% 100%, 0 100%);
+			}
+		}
+		&.left, &.right {
+			height: .1em;
+			inset-block: calc(50% - var(--line-size) / 2);
+			&::before {
+				inset-block: 50%;
+				translate: 0 -50%;
+			}
+
+		}
+		&.left {
+			inset-inline: calc(0em - var(--margin-inline) - var(--border-width)) calc(50% - var(--line-size) / 2);
+			&::before {
+				inset-inline: calc(var(--margin-inline) + var(--line-size) / 2 - var(--arrow-size)) auto;
+				clip-path: polygon(0 0, 100% 50%, 0 100%);
+			}
+		}
+		&.right {
+			inset-inline: calc(50% - var(--line-size) / 2) calc(0em - var(--margin-inline) - var(--border-width));
+			&::before {
+				inset-inline: auto calc(var(--margin-inline) + var(--line-size) / 2 - var(--arrow-size));
+				clip-path: polygon(0 50%, 100% 0, 100% 100%);
+			}
+		}
+	}
+}
+
+.alert {
+	border: .1em solid;
+	background-color: rgb(255, 155, 41);
+	border-radius: .25em;
+	padding: .5em;
+	position: relative;
+
+	header {
+		font-weight: bold;
+		font-size: 125%;
+	}
+}
+
+.browser-support {
+	display: inline-flex;
+	justify-content: center;
+	gap: .5em;
+	font-weight: bold;
+
+	> * {
+		width: 1.5em;
+		height: 1.5em;
+		background-size: contain;
+		background-repeat: no-repeat;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		-webkit-text-stroke: #fff .05em;
+		paint-order: stroke fill;
+		line-height: 1;
+	}
+
+	@each $browser in chrome firefox safari {
+		.#{$browser} {
+			background-image: url(../img/#{$browser}.svg);
+			&:not(:empty)::before {
+				content: 'Supported in #{$browser} from version';
+				position: absolute;
+				clip-path: inset(50%);
+			}
+			&:empty::before {
+				content: '❌' / 'No support in #{$browser} yet';
+			}
+		}
+	}
+}
