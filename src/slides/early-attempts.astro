@@ -1,0 +1,143 @@
+<p-slide id="misplaced">
+  <label for="misplaced-btn">Select a language</label>
+  <button
+    type="button"
+    id="misplaced-btn"
+    command="toggle-popover"
+    commandfor="misplaced-dropdown">Choose&hellip;</button
+  >
+  <ul popover id="misplaced-dropdown">
+    <li>🇬🇧 English</li>
+    <li>🇫🇷 Français</li>
+    <li>🇮🇹 Italiano</li>
+    <li>🇪🇸 Español</li>
+  </ul>
+</p-slide>
+<style>
+  #misplaced,
+  #extra-long {
+    button,
+    input {
+      display: flex;
+      justify-content: space-between;
+      font-family: inherit;
+      font-size: inherit;
+      border: 0.1em solid #000;
+      padding: 0.1em 0.3em;
+      background: white;
+      border-radius: 0.25em;
+      width: 15em;
+    }
+    button {
+      color: gray;
+      font-style: italic;
+      text-align: start;
+
+      &::after {
+        content: "\25BC";
+        font-style: normal;
+        color: #000;
+      }
+    }
+    ul {
+      list-style: "";
+      border: 0.1em gray;
+      border-style: outset;
+      padding: 0 0.5em;
+    }
+  }
+  #misplaced {
+    button {
+      width: 10em;
+    }
+    ul {
+      width: max-content;
+      margin: auto auto -8em 12em;
+    }
+  }
+</style>
+<p-slide id="extra-long">
+  <h4>Intl money transfer</h4>
+  <label for="currency-amount">Amount</label>
+  <input
+    type="number"
+    name="currency-amount"
+    id="currency-amount"
+    value="750"
+  />
+  <label for="currency-btn">Currency</label>
+  <button
+    type="button"
+    id="currency-btn"
+    command="toggle-popover"
+    commandfor="currency-dropdown">Choose&hellip;</button
+  >
+  <ul popover id="currency-dropdown">
+    <li>U.S. dollar (USD)</li>
+    <li>Euro (EUR)</li>
+    <li>Japanese yen (JPY)</li>
+    <li>Pound sterling (GBP)</li>
+    <li>Renminbi (CNY)</li>
+    <li>Swiss franc (CHF)</li>
+    <li>Australian dollar (AUD)</li>
+    <li>Canadian dollar (CAD)</li>
+    <li>Hong Kong dollar (HKD)</li>
+    <li>Singapore dollar (SGD)</li>
+  </ul>
+</p-slide>
+<style>
+  #extra-long {
+    label {
+      margin-top: 0.5em;
+    }
+    ul {
+      width: 15em;
+      inset: anchor(end) auto auto anchor(start);
+      background: ivory;
+      &::before {
+        content: none;
+      }
+    }
+  }
+</style>
+<p-slide>
+  <div id="fixed-scroll">
+    <h4>Ortus et institutio (1841-1865)</h4>
+    <h6>Familia medicorum rei publicae faventium</h6>
+    <p>
+      Georgius Beniaminus Clemenceau natus est die 28 Septembris 1841 in vico
+      Mouilleron-en-Pareds, in domo avorum maternorum, gentis Gautreau, ubi
+      mater Emma parere maluerat. Familia Clemenceau ex agrorum dominis et
+      medicis regionis quae Bocage vocatur erat: medici in ea gente inde a
+      saeculo septimo decimo fuerunt, et proavus, Petrus Paulus Clemenceau,
+      exercituum occidentalium medicus tempore rerum novarum, postea in concilio
+      legibus ferendis sedit. Duo praedia familia possidebat: Aubraie, villam in
+      vico La Réorthe, et Le Colombier, villam rusticam apud Mouchamps, ubi
+      Georgius sepultus est. Cum illa Vendea regi et Ecclesiae fidelissima
+      esset, familia tamen Clemenceau partes contrarias sequebatur, eorum
+      scilicet qui Bleus vocabantur: hi erant cives litteris culti, <a href=""
+        >Voltarii</a
+      > studiosi, rei publicae dediti.
+    </p>
+    <p>
+      E schola privata Monfort egressus, Georgius lyceum Namnetense
+      frequentavit, quod hodie eius nomine appellatur. Discipulus ingeniosus sed
+      inconstans, amorem Graeciae antiquae ibi concepit, cuius litteras per
+      totam vitam lectitavit; Romam contra aversabatur. Primis studiis anno 1858
+      absolutis, die 1 Novembris eiusdem anni scholae medicinae Namnetensi nomen
+      dedit, ubi tres annos studuit et probationem eorum quos externos
+      (externes) vocant superavit; anno 1861 Lutetiam petivit ut studia
+      perficeret.
+    </p>
+  </div>
+</p-slide>
+<style>
+  #fixed-scroll {
+    padding-inline: 3em;
+    font-size: 0.6em;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+</style>
