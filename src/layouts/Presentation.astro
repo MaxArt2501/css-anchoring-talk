@@ -11,24 +11,24 @@ import pkg from '../../package.json';
 		<title>{pkg.description}</title>
 	</head>
 	<body>
-		<p-deck role="main">
+		<p-deck role="main" id="deck">
 			<slot />
 		</p-deck>
 		<progress max="100" aria-label="Presentation progress"></progress>
 		<div role="toolbar">
-			<button type="button" aria-labelledby="gridModeTooltip">
+			<button type="button" aria-labelledby="gridModeTooltip" command="--grid" commandfor="deck">
 				<svg viewBox="0 0 10 10">
 					<path stroke="currentColor" fill="none" d="M0 .5h4v3.5h-3.5v-3.5M5.5 .5h4v3.5h-3.5v-3.5M0 6h4v3.5h-3.5v-3.5M5.5 6h4v3.5h-3.5v-3.5" />
 				</svg>
 			</button>
 			<div popover id="gridModeTooltip">Grid mode</div>
-			<button type="button" aria-labelledby="speakerModeTooltip">
+			<button type="button" aria-labelledby="speakerModeTooltip" command="--speaker" commandfor="deck">
 				<svg viewBox="0 0 10 10">
 					<path stroke="currentColor" fill="none" d="M.5 5h6v-4.5h-6v9h6v-4.5M7.5 .5h2.5M7.5 2h2.5M7.5 3.5h2.5" />
 				</svg>
 			</button>
 			<div popover id="speakerModeTooltip">Speaker mode</div>
-			<button type="button" aria-labelledby="presentationModeTooltip">
+			<button type="button" aria-labelledby="presentationModeTooltip" command="--presentation" commandfor="deck">
 				<svg viewBox="0 0 10 10">
 					<path stroke="currentColor" fill="none" d="M0 1.5h9.5v7h-9v-7m1.5 2h3m-2 1.5h4v1.5h-3.5v-1.5" />
 				</svg>
@@ -45,9 +45,9 @@ import pkg from '../../package.json';
 			<div popover id="fullscreenModeTooltip">Toggle fullscreen mode</div>
 		</div>
 		<nav>
-			<button type="button" class="previous" aria-labelledby="goBackwardTooltip"></button>
+			<button type="button" class="previous" aria-labelledby="goBackwardTooltip" command="--previous" commandfor="deck"></button>
 			<div popover id="goBackwardTooltip">Go backward</div>
-			<button type="button" class="next" aria-labelledby="goForwardTooltip"></button>
+			<button type="button" class="next" aria-labelledby="goForwardTooltip" command="--next" commandfor="deck"></button>
 			<div popover id="goForwardTooltip">Go forward</div>
 		</nav>
 		<svg class="absolute" height="0">
@@ -71,4 +71,5 @@ import pkg from '../../package.json';
 	}
 </style>
 <script src="../scripts/main.js"></script>
+<script src="../scripts/presentation.js"></script>
 <script src="../scripts/blob.js"></script>

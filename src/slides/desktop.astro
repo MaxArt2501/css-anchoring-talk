@@ -1,232 +1,534 @@
-<p-slide id="windows">
-  <!-- <img src="../img/cursor-default.svg" alt="Windows mouse cursor" /> -->
-  <footer>
-    <button type="button" command="toggle-popover" commandfor="first-level-menu" id="win95-start-btn">Start</button>
-		<div popover id="first-level-menu" class="menu">
-			<button type="button" id="programs-btn" style="anchor-name: --programs-btn;" command="toggle-popover" commandfor="programs-menu">
-				<img src="../img/win95-programs-icon.png" alt="">
-				<span><u>P</u>rograms</span>
-			</button>
-			<div popover style="position-anchor: --programs-btn;" class="menu" id="programs-menu">
-				<button type="button" style="anchor-name: --accessories-btn" command="toggle-popover" commandfor="accessories-menu">
-					<img src="../img/win95-folder-16-icon.png" alt="">
-					<span>Accessories</span>
+<p-slide>
+	<div id="windows">
+		<footer>
+			<button
+				type="button"
+				command="toggle-popover"
+				commandfor="first-level-menu"
+				id="win95-start-btn">Start</button
+			>
+			<div popover id="first-level-menu" class="menu">
+				<button
+					type="button"
+					id="programs-btn"
+					style="anchor-name: --programs-btn;"
+					command="toggle-popover"
+					commandfor="programs-menu"
+				>
+					<img src="../img/win95-programs-icon.png" alt="" />
+					<span><u>P</u>rograms</span>
 				</button>
-				<div popover style="position-anchor: --accessories-btn;" class="menu" id="accessories-menu">
+				<div
+					popover
+					style="position-anchor: --programs-btn;"
+					class="menu"
+					id="programs-menu"
+				>
+					<button
+						type="button"
+						style="anchor-name: --accessories-btn"
+						command="toggle-popover"
+						commandfor="accessories-menu"
+					>
+						<img src="../img/win95-folder-16-icon.png" alt="" />
+						<span>Accessories</span>
+					</button>
+					<div
+						popover
+						style="position-anchor: --accessories-btn;"
+						class="menu"
+						id="accessories-menu"
+					>
+						<button type="button">
+							<img src="../img/win95-charmap-16-icon.png" alt="" />
+							<span>Character Map</span>
+						</button>
+						<button type="button" command="--show" commandfor="notepad">
+							<img src="../img/win95-notepad-16-icon.png" alt="" />
+							<span>Notepad</span>
+						</button>
+					</div>
 					<button type="button">
-						<img src="../img/win95-charmap-16-icon.png" alt="">
-						<span>Character Map</span>
+						<img src="../img/win95-folder-16-icon.png" alt="" />
+						<span>StartUp</span>
+					</button>
+					<button type="button" command="--show" commandfor="prompt">
+						<img src="../img/win95-msdos-16-icon.png" alt="" />
+						<span>MS-DOS Prompt</span>
 					</button>
 					<button type="button">
-						<img src="../img/win95-notepad-16-icon.png" alt="">
-						<span>Notepad</span>
+						<img src="../img/win95-explorer-16-icon.png" alt="" />
+						<span>Windows Explorer</span>
 					</button>
 				</div>
-				<button type="button">
-					<img src="../img/win95-folder-16-icon.png" alt="">
-					<span>StartUp</span>
+				<button
+					type="button"
+					id="documents-btn"
+					style="anchor-name: --documents-btn;"
+				>
+					<img src="../img/win95-documents-icon.png" alt="" />
+					<span><u>D</u>ocuments</span>
+				</button>
+				<button
+					type="button"
+					id="settings-btn"
+					style="anchor-name: --settings-btn;"
+				>
+					<img src="../img/win95-settings-icon.png" alt="" />
+					<span><u>S</u>ettings</span>
 				</button>
 				<button type="button">
-					<img src="../img/win95-msdos-16-icon.png" alt="">
-					<span>MS-DOS Prompt</span>
+					<img src="../img/win95-find-icon.png" alt="" />
+					<span><u>F</u>ind</span>
 				</button>
 				<button type="button">
-					<img src="../img/win95-explorer-16-icon.png" alt="">
-					<span>Windows Explorer</span>
+					<img src="../img/win95-help-icon.png" alt="" />
+					<span><u>H</u>elp</span>
+				</button>
+				<button type="button">
+					<img src="../img/win95-run-icon.png" alt="" />
+					<span><u>R</u>un...</span>
+				</button>
+				<hr />
+				<button type="button">
+					<img src="../img/win95-shutdown-icon.png" alt="" />
+					<span>Sh<u>u</u>t Down...</span>
 				</button>
 			</div>
-			<button type="button" id="documents-btn" style="anchor-name: --documents-btn;">
-				<img src="../img/win95-documents-icon.png" alt="">
-				<span><u>D</u>ocuments</span>
-			</button>
-			<button type="button" id="settings-btn" style="anchor-name: --settings-btn;">
-				<img src="../img/win95-settings-icon.png" alt="">
-				<span><u>S</u>ettings</span>
-			</button>
-			<button type="button">
-				<img src="../img/win95-find-icon.png" alt="">
-				<span><u>F</u>ind</span>
-			</button>
-			<button type="button">
-				<img src="../img/win95-help-icon.png" alt="">
-				<span><u>H</u>elp</span>
-			</button>
-			<button type="button">
-				<img src="../img/win95-run-icon.png" alt="">
-				<span><u>R</u>un...</span>
-			</button>
-			<hr>
-			<button type="button">
-				<img src="../img/win95-shutdown-icon.png" alt="">
-				<span>Sh<u>u</u>t Down...</span>
-			</button>
-		</div>
-  </footer>
-	<dialog id="notepad">
-		<header>
-			<img src="../img/win95-note-16-icon.png" alt="">
-			Untitled - Notepad
-			<button type="button" class="btn">
-				<img src="../img/win95-minimize-icon.svg" alt="">
-			</button><button type="button" class="btn">
-				<img src="../img/win95-maximize-icon.svg" alt="">
-			</button>
-			<button type="button" class="btn">
-				<img src="../img/win95-close-icon.svg" alt="">
-			</button>
-		</header>
-	</dialog>
-</p-slide>
-<style>
-  #windows {
-    --slide-bg: #00807f;
-    --px: calc(var(--slide-width) / 960);
-		/* --window-border-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA1IDUiPjxwYXRoIHN0cm9rZT0iI2RmZGZkZiIgZD0iTS41IDRWLjVINCIvPjxwYXRoIHN0cm9rZT0iI2ZmZiIgZD0iTTEuNSAzVjEuNUgzIi8+PHBhdGggc3Ryb2tlPSIjMDAwIiBkPSJNMCA0LjVoNC41VjAiLz48cGF0aCBzdHJva2U9ImdyYXkiIGQ9Ik0xIDMuNWgyLjVWMSIvPjxwYXRoIHN0cm9rZT0ic2lsdmVyIiBkPSJNMiAyLjVoMSIvPjwvc3ZnPg=="); */
-		--window-border-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFBAMAAAB/QTvWAAAAD1BMVEUAAADf39+AgID////AwMDfdwPBAAAAGElEQVQI12MQFGRgEDYCYicGBiElBhAAAAsRAPE5GRFkAAAAAElFTkSuQmCC");
-		--button-border-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFBAMAAAB/QTvWAAAAD1BMVEUAAAD///+AgIDf39/AwMBo2NEyAAAAGElEQVQI12MQFGRgEDYCYicGBiElBhAAAAsRAPE5GRFkAAAAAElFTkSuQmCC");
-		--button-active-border-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFBAMAAAB/QTvWAAAAD1BMVEX///8AAADf39+AgIDAwMCbDWLLAAAAGElEQVQI12MQFGRgEDYCYicGBiElBhAAAAsRAPE5GRFkAAAAAElFTkSuQmCC");
-		cursor: url(../img/win95-cursor.svg), default;
-		font-family: W95F, sans-serif;
-			image-rendering: pixelated;
+			<div class="taskbar"   ></div>
+		</footer>
+		<dialog id="notepad" class="window">
+			<header>
+				<img src="../img/win95-note-16-icon.png" alt="" class="icon" />
+				<span class="title">Untitled - Notepad</span>
+				<button type="button" class="btn">
+					<img src="../img/win95-minimize-icon.svg" alt="" />
+				</button><button type="button" class="btn">
+					<img src="../img/win95-maximize-icon.svg" alt="" />
+				</button>
+				<button type="button" class="btn" command="close" commandfor="notepad">
+					<img src="../img/win95-close-icon.svg" alt="" />
+				</button>
+			</header>
+			<div role="menu">
+				<button type="button" command="toggle-popover" commandfor="file-menu"><u>F</u>ile</button>
+				<div popover id="file-menu" class="menu">
+					<button type="button"><span><u>N</u>ew</span></button>
+					<button type="button"><span><u>O</u>pen...</span></button>
+					<button type="button"><span><u>S</u>ave</span></button>
+					<button type="button"><span>Save <u>A</u>s...</span></button>
+					<hr>
+					<button type="button" disabled><span>Page Se<u>t</u>up...</span></button>
+					<button type="button"><span><u>P</u>rint</span></button>
+					<hr>
+					<button type="button" command="close" commandfor="notepad"><span>E<u>x</u>it</span></button>
+				</div>
+				<button type="button" command="toggle-popover" commandfor="edit-menu"><u>E</u>dit</button>
+				<div popover id="edit-menu" class="menu">
+					<button type="button">
+						<span><u>U</u>ndo</span>
+						<abbr>Ctrl+Z</abbr>
+					</button>
+					<hr>
+					<button type="button">
+						<span>Cu<u>t</u></span>
+						<abbr>Ctrl+X</abbr>
+					</button>
+					<button type="button">
+						<span><u>C</u>opy</span>
+						<abbr>Ctrl+C</abbr>
+					</button>
+					<button type="button">
+						<span><u>P</u>aste</span>
+						<abbr>Ctrl+V</abbr>
+					</button>
+					<button type="button">
+						<span>De<u>l</u>ete</span>
+						<abbr>Del</abbr>
+					</button>
+					<hr>
+					<button type="button">
+						<span>Select <u>A</u>ll</span>
+						<abbr>Ctrl+A</abbr>
+					</button>
+					<button type="button">
+						<span>Time/<u>D</u>ate</span>
+						<abbr>F5</abbr>
+					</button>
+					<hr>
+					<button type="button">
+						<span><u>W</u>ord Wrap</span>
+					</button>
+				</div>
+				<button type="button" command="toggle-popover" commandfor="search-menu"><u>S</u>earch</button>
+				<div popover id="search-menu" class="menu">
+					<button type="button">
+						<span><u>F</u>ind...</span>
+					</button>
+					<button type="button">
+						<span>Find <u>N</u>ext</span>
+						<abbr>F3</abbr>
+					</button>
+				</div>
+				<button type="button" command="toggle-popover" commandfor="help-menu"><u>H</u>elp</button>
+				<div popover id="help-menu" class="menu">
+					<button type="button">
+						<span><u>H</u>elp Topics</span>
+					</button>
+					<hr>
+					<button type="button">
+						<span><u>A</u>bout Notepad</span>
+					</button>
+				</div>
+			</div>
+			<textarea name="notepad-txt" id="notepad-txt"></textarea>
+		</dialog>
+		<dialog id="prompt" class="window">
+			<header>
+				<img src="../img/win95-msdos-16-icon.png" alt="" class="icon" />
+				<span class="title">MS-DOS Prompt</span>
+				<button type="button" class="btn">
+					<img src="../img/win95-minimize-icon.svg" alt="" />
+				</button><button type="button" class="btn">
+					<img src="../img/win95-maximize-icon.svg" alt="" />
+				</button>
+				<button type="button" class="btn" command="close" commandfor="prompt">
+					<img src="../img/win95-close-icon.svg" alt="" />
+				</button>
+			</header>
+			<div role="toolbar">
+				<select name="msdos-char-size" id="msdos-char-size">
+					<option value="7x12">7 x 12</option>
+				</select>
+			</div>
+			<output>{`
+Microsoft(R) Windows 95
+   (C)Copyright Microsoft Corp 1981-1995.
 
-		footer {
+C:\\WINDOWS>`}</output>
+		</dialog>
+	</div>
+</p-slide>
+<style is:global>
+  #windows {
+		--px: calc((var(--slide-height) - 2em) / 480);
+		--window-border-image: url("data:image/gif;base64,R0lGODlhBQAFAHAAACwAAAAABQAFAILf398AAAD///+AgIDAwMAAAAAAAAAAAAADDAgKASKjCRLBuCHrBAA7");
+		--button-border-image: url("data:image/gif;base64,R0lGODlhBQAFAHAAACwAAAAABQAFAIH///8AAADAwMCAgIACCoQRIDK5DYYMtBYAOw");
+		--button-active-border-image: url("data:image/gif;base64,R0lGODlhBQAFAHAAACwAAAAABQAFAIEAAAD///+AgIDAwMACCoQRIDLJDYYMtBYAOw");
+		
+		position: relative;
+		height: 100%;
+		background: #00807f;
+		cursor: url(../img/win95-cursor.svg), default;
+
+		> * {
+			font-family: MSW98UI, sans-serif;
+			font-size: calc(var(--px) * 11);
+			image-rendering: pixelated;
+		}
+
+    footer {
       position: absolute;
       inset: auto 0 0;
-			background: silver;
-			font-size: calc(var(--px) * 12);
-			padding: calc(var(--px) * 2) calc(var(--px) * 2);
-			border-top: var(--px) solid #dfdfdf;
-			box-shadow: inset 0 var(--px) 0 0 #fff;
+      background: silver;
+      padding: calc(var(--px) * 2) calc(var(--px) * 2);
+      border-top: var(--px) solid #dfdfdf;
+      box-shadow: inset 0 var(--px) 0 0 #fff;
+      display: flex;
+      gap: calc(var(--px) * 4);
     }
-		button {
-			font-family: inherit;
-			font-size: inherit;
-			cursor: inherit;
-			background: none;
-			border-radius: 0;
-			border: none;
-		}
+    button {
+      font-family: inherit;
+      font-size: inherit;
+      cursor: inherit;
+      background: none;
+      border-radius: 0;
+      border: none;
+    }
     #win95-start-btn {
-      background: url(../img/win95-start.svg) calc(var(--px) * 2) var(--px) / calc(var(--px) * 16) calc(var(--px) * 16) no-repeat silver;
+      background: url(../img/win95-start.svg) calc(var(--px) * 2) var(--px) /
+        calc(var(--px) * 16) calc(var(--px) * 16) no-repeat silver;
       border: calc(var(--px) * 2) solid;
       border-image-slice: 40%;
       border-image-width: calc(var(--px) * 2);
       border-image-source: var(--button-border-image);
-			image-rendering: pixelated;
-			height: calc(var(--px) * 22);
-			padding-inline: calc(var(--px) * 20) calc(var(--px) * 2);
-			padding-block: var(--px);
-			font-family: inherit;
-			font-size: inherit;
-			font-weight: bold;
-			line-height: 1.6;
-			cursor: inherit;
-			anchor-name: --win95-start-btn;
-			
-			&:active, &[aria-expanded="true"], &:has(+ :popover-open) {
-				border-image-source: var(--button-active-border-image);
-				position: relative;
-				padding-inline: calc(var(--px) * 21) var(--px);
-				padding-block: calc(var(--px) * 2) 0;
-				background-position: calc(var(--px) * 3) calc(var(--px) * 2);
+      image-rendering: pixelated;
+      height: calc(var(--px) * 22);
+      padding-inline: calc(var(--px) * 21) calc(var(--px) * 3);
+      padding-block: var(--px);
+      font-weight: bold;
+      line-height: 1.6;
+      anchor-name: --win95-start-btn;
 
-				&::after {
-					content: '';
-					position: absolute;
-					inset: var(--px);
-					border: var(--px) dotted #000;
-				}
-			}
+      &:active,
+      &[aria-expanded="true"],
+      &:has(+ :popover-open) {
+        border-image-source: var(--button-active-border-image);
+        position: relative;
+        padding-inline: calc(var(--px) * 21) var(--px);
+        padding-block: calc(var(--px) * 2) 0;
+        background-position: calc(var(--px) * 3) calc(var(--px) * 2);
+
+        &::after {
+          content: "";
+          position: absolute;
+          inset: var(--px);
+          border: var(--px) dotted #000;
+        }
+      }
     }
-		.menu, dialog {
-			border-image-slice: 40%;
-			border-image-width: calc(var(--px) * 2);
-			border-image-source: var(--window-border-image);
-			image-rendering: pixelated;
-			background: silver;
-		}
-		.menu {
-			padding: calc(var(--px) * 3);
-			position-area: right span-bottom;
-			inset: initial;
-			margin: calc(var(--px) * -3) auto auto calc(var(--px) * -2);
+    .menu,
+    dialog {
+      border-image-slice: 40% fill;
+      border-image-width: calc(var(--px) * 2);
+      border-image-source: var(--window-border-image);
+      image-rendering: pixelated;
+    }
+    .menu {
+      padding: calc(var(--px) * 3);
+      position-area: right span-bottom;
+      inset: initial;
+      margin: calc(var(--px) * -3) auto auto calc(var(--px) * -2);
 
-			&:popover-open {
-				display: flex;
-				flex-direction: column;
-			}
+      &:popover-open {
+        display: flex;
+        flex-direction: column;
+      }
 
-			&::before {
-				content: none;
-			}
+      &::before {
+        content: none;
+      }
 
+      > button {
+        display: flex;
+
+        &[command="toggle-popover"]::after {
+          content: "";
+          width: calc(var(--px) * 4);
+          height: calc(var(--px) * 7);
+          background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 7"><path stroke="%23000" d="M.5 0v7m1-6v5m1-4v3m1-2v1"/></svg>');
+          margin-inline-start: auto;
+        }
+      }
+    }
+		:is(.menu, [role="menu"]) {
 			> button {
 				border: none;
-				display: flex;
-				align-items: center;
-				padding-inline: calc(var(--px) * 6) calc(var(--px) * 6);
-				gap: calc(var(--px) * 6);
-				height: calc(var(--px) * 22);
-				
-				&:hover, &:has(+ :popover-open) {
+        align-items: center;
+        padding-inline: calc(var(--px) * 6);
+        gap: calc(var(--px) * 6);
+        height: calc(var(--px) * 22);
+
+				&:disabled {
+					color: gray;
+				}
+
+        &:not(:disabled):hover,
+        &[command="toggle-popover"]:has(+ :popover-open) {
 					background: navy;
-					color: white;
+          color: white;
 					
-					&::after {
+          &::after {
 						filter: invert(1);
+          }
+        }
+				&:disabled:hover {
+					background: navy;
+				}
+
+        > img {
+          width: calc(var(--px) * 16);
+          aspect-ratio: 1;
+        }
+			}
+		}
+    .window {
+      width: calc(var(--px) * 320);
+      padding: calc(var(--px) * 2);
+
+      &::backdrop {
+        pointer-events: none;
+      }
+
+      header {
+        background: navy;
+        color: white;
+        font-weight: bold;
+        padding: var(--px);
+        display: flex;
+        align-items: center;
+        margin-bottom: var(--px);
+
+        .icon {
+          height: calc(var(--px) * 16);
+					margin-right: calc(var(--px) * 3);
+        }
+
+        button {
+          padding: 0 calc(var(--px) * 2) var(--px);
+          height: calc(var(--px) * 14);
+
+          &:first-of-type {
+            margin-inline-start: auto;
+          }
+          &:last-of-type {
+            margin-inline-start: calc(var(--px) * 2);
+          }
+          > img {
+            height: calc(var(--px) * 9);
+          }
+        }
+      }
+    }
+    #first-level-menu {
+      position-anchor: --win95-start-btn;
+      position-area: top span-right;
+      padding-inline-start: calc(var(--px) * 24);
+      min-height: calc(var(--px) * 135);
+      margin: 0;
+
+      &::before {
+        content: "";
+        inset: calc(var(--px) * 3);
+        width: calc(var(--px) * 21);
+        background: gray url(../img/win95-menu-shoulder.png) calc(var(--px) * 3)
+          calc(100% - var(--px) * 7) / calc(var(--px) * 14) auto no-repeat;
+        border: none;
+      }
+
+      > button {
+        padding-inline: calc(var(--px) * 10) calc(var(--px) * 7);
+        gap: calc(var(--px) * 10);
+        height: calc(var(--px) * 32);
+      }
+
+      > img {
+        width: calc(var(--px) * 24);
+      }
+    }
+		dialog {
+			.menu {
+				position-area: bottom span-right;
+				margin: 0;
+				grid-template-columns: calc(var(--px) * 16) auto auto;
+				
+				&:popover-open {
+					display: grid;
+				}
+
+				> hr,
+				> button {
+					grid-column: 1 / -1;
+					display: grid;
+					grid-template-columns: subgrid;
+				}
+				> button {
+					text-align: start;
+					> span {
+						grid-column: 2;
+					}
+					> abbr {
+						grid-column: 3;
 					}
 				}
-				
-				> img {
-					width: calc(var(--px) * 16);
-					aspect-ratio: 1;
-				}
-				
-				&[commandfor]::after {
-					content: '';
-					width: calc(var(--px) * 4);
-					height: calc(var(--px) * 7);
-					background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 7"><path stroke="%23000" d="M.5 0v7m1-6v5m1-4v3m1-2v1"/></svg>');
-					margin-inline-start: auto;
-				}
 			}
 		}
-		dialog {
+    hr {
+      margin-block: calc(var(--px) * 2) calc(var(--px) * 5);
+      border-top: var(--px) solid gray;
+      border-bottom: var(--px) solid #fff;
+      width: 100%;
+    }
+    [role="menu"] {
+      display: flex;
+      margin-bottom: calc(var(--px) * 2);
 
+      button {
+        padding-inline: calc(var(--px) * 6) calc(var(--px) * 9);
+        height: calc(var(--px) * 18);
+      }
+    }
+    [role="toolbar"] {
+      display: flex;
+      margin-bottom: calc(var(--px) * 2);
+			gap: calc(var(--px) * 8);
+			position: static;
+    }
+		select,
+		textarea {
+			border: calc(var(--px) * 2) solid;
+			border-image-slice: 40%;
+			border-image-width: calc(var(--px) * 2);
+			border-image-source: var(--button-active-border-image);
 		}
-		#first-level-menu {
-			position-anchor: --win95-start-btn;
-			position-area: top span-right;
-			padding-inline-start: calc(var(--px) * 24);
-			min-height: calc(var(--px) * 135);
-			margin: 0;
-			
-			&::before {
-				content: '';
-				inset: calc(var(--px) * 3);
-				width: calc(var(--px) * 21);
-				background: gray url(../img/win95-menu-shoulder.png) calc(var(--px) * 3) calc(100% - var(--px) * 7) / calc(var(--px) * 14) auto no-repeat;
-				border: none;
-			}
-			
-			> button {
-				padding-inline: calc(var(--px) * 10) calc(var(--px) * 7);
-				gap: calc(var(--px) * 10);
-				height: calc(var(--px) * 32);
-			}
-			
-			> img {
-				width: calc(var(--px) * 24);
-			}
+		select {
+			font-size: inherit;
+			font-family: inherit;
+			text-align: right;
+			width: calc(var(--px) * 92);
 		}
-		hr {
-			margin-block: calc(var(--px) * 2) calc(var(--px) * 5);
-			border-top: var(--px) solid gray;
-			border-bottom: var(--px) solid #fff;
-			width: 100%;
+    textarea {
+      display: block;
+      padding: calc(var(--px) * 0.5) var(--px);
+			line-height: calc(var(--px) * 15);
+      background: white;
+      width: 100%;
+      height: 20lh;
+      font-size: calc(var(--px) * 16);
+      font-family: Fixedsys;
+      resize: none;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    .taskbar {
+      display: flex;
+      gap: calc(var(--px) * 3);
+
+      > .btn {
+				font-weight: bold;
+        flex: 0 1 auto;
+        width: calc(var(--px) * 160);
+      }
+			img {
+				height: calc(var(--px) * 16);
+			}
+    }
+    button {
+      &.btn {
+        display: flex;
+        align-items: center;
+        gap: calc(var(--px) * 3);
+        border: calc(var(--px) * 2) solid;
+        padding: var(--px) calc(var(--px) * 2);
+        border-image-slice: 40%;
+        border-image-width: calc(var(--px) * 2);
+        border-image-source: var(--button-border-image);
+        background: #c0c0c0;
+        height: calc(var(--px) * 22);
+
+        &:active,
+        &[aria-expanded="true"] {
+          padding-block: calc(var(--px) * 2) 0;
+          border-image-source: var(--button-active-border-image);
+					background: conic-gradient(at var(--px) var(--px), #0000 90deg, #fff 0deg 180deg, #0000 0deg 270deg, #fff 0deg) 0 0 / calc(var(--px) * 2) calc(var(--px) * 2);
+					box-shadow: inset 0 var(--px) 0 0 #fff;
+        }
+      }
+    }
+    output {
+			display: block;
+			border: calc(var(--px) * 2) solid;
+      border-image-slice: 40%;
+      border-image-width: calc(var(--px) * 2);
+      border-image-source: var(--button-active-border-image);
+			background-color: #000;
+			font-size: calc(var(--px) * 16);
+      font-family: Fixedsys;
+			height: 16lh;
+			color: silver;
+			white-space: pre-wrap;
 		}
-    /* img {
-      height: calc(var(--px) * 22);
-    } */
   }
 </style>
