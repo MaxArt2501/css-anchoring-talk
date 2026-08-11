@@ -201,8 +201,16 @@ import pkg from '../../package.json';
 			</header>
 			<div role="toolbar">
 				<select name="msdos-char-size" id="msdos-char-size">
+					<button>
+						<selectedcontent></selectedcontent>
+					</button>
 					<option value="7x12">7 x 12</option>
 				</select>
+				<div>
+					<button type="button" class="btn">
+						<img src="../img/win95-select-16-icon.png" alt="" />
+					</button>
+				</div>
 			</div>
 			<output>{`
 Microsoft(R) Windows 95
@@ -214,7 +222,8 @@ C:\\WINDOWS>`}</output>
 </p-slide>
 <style is:global>
   #windows {
-		--px: calc((var(--slide-height) - 2em) / 480);
+		--length-1: calc((var(--slide-height) - 2em) / 480);
+		--px: var(--length-1);
 		--window-border-image: url("data:image/gif;base64,R0lGODlhBQAFAHAAACwAAAAABQAFAILf398AAAD///+AgIDAwMAAAAAAAAAAAAADDAgKASKjCRLBuCHrBAA7");
 		--button-border-image: url("data:image/gif;base64,R0lGODlhBQAFAHAAACwAAAAABQAFAIH///8AAADAwMCAgIACCoQRIDK5DYYMtBYAOw");
 		--button-active-border-image: url("data:image/gif;base64,R0lGODlhBQAFAHAAACwAAAAABQAFAIEAAAD///+AgIDAwMACCoQRIDLJDYYMtBYAOw");
@@ -353,9 +362,17 @@ C:\\WINDOWS>`}</output>
         pointer-events: none;
       }
 
+			&[aria-current="true"] {
+				z-index: 1;
+				header {
+					background: navy;
+					color: white;
+				}
+			}
+			
       header {
-        background: navy;
-        color: white;
+				background: gray;
+        color: silver;
         font-weight: bold;
         padding: var(--px);
         display: flex;
@@ -453,9 +470,16 @@ C:\\WINDOWS>`}</output>
     }
     [role="toolbar"] {
       display: flex;
+			flex-direction: row;
       margin-bottom: calc(var(--px) * 2);
 			gap: calc(var(--px) * 8);
 			position: static;
+			> button {
+				opacity: 1;
+			}
+			img {
+				height: calc(var(--px) * 16);
+			}
     }
 		select,
 		textarea {
@@ -469,6 +493,7 @@ C:\\WINDOWS>`}</output>
 			font-family: inherit;
 			text-align: right;
 			width: calc(var(--px) * 92);
+			appearance: base-select;
 		}
     textarea {
       display: block;
@@ -520,6 +545,10 @@ C:\\WINDOWS>`}</output>
         }
       }
     }
+		#prompt {
+			width: min-content;
+			inset: 0;
+		}
     output {
 			display: block;
 			border: calc(var(--px) * 2) solid;
@@ -530,6 +559,7 @@ C:\\WINDOWS>`}</output>
 			font-size: calc(var(--px) * 16);
       font-family: Fixedsys;
 			height: 16lh;
+			width: 80ch;
 			color: silver;
 			white-space: pre-wrap;
 		}

@@ -3,10 +3,13 @@
   <button
     type="button"
     id="misplaced-btn"
-    command="toggle-popover"
-    commandfor="misplaced-dropdown">Choose&hellip;</button
+    command="--next"
+    commandfor="deck">Choose&hellip;</button
   >
-  <ul popover id="misplaced-dropdown">
+  <p-fragment index="0" p-effect="move natural" p-duration="2">
+    <img src="../img/cursor-windows.svg" class="cursor" p-fragment="0" p-effect="click" p-delay="2" p-duration="2">
+  </p-fragment>
+  <ul popover p-fragment>
     <li>🇬🇧 English</li>
     <li>🇫🇷 Français</li>
     <li>🇮🇹 Italiano</li>
@@ -52,7 +55,19 @@
     }
     ul {
       width: max-content;
-      margin: auto auto -8em 12em;
+      inset: 8em auto auto 14em;
+      margin: 0;
+    }
+  }
+  p-fragment {
+    position: absolute;
+    --from-x: 1em;
+    --from-y: 8.5em;
+    --to-x: 9em;
+    --to-y: 2em;
+
+    > img {
+      height: 2em;
     }
   }
 </style>
