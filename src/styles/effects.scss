@@ -28,3 +28,12 @@
 		padding-block: 0 !important;
 	}
 }
+
+[p-effect~='move'][p-effect~='natural'] {
+	translate: calc(var(--from-x, 0px) + var(--fragment-progress) * (var(--to-x, 0px) - var(--from-x, 0px)))
+		calc(var(--from-y, 0px) + sin(var(--fragment-progress) * pi / 2) * (var(--to-y, 0px) - var(--from-y, 0px)));
+}
+
+[p-effect~='click'] {
+	scale: clamp(0.75, (abs(1 - var(--fragment-progress) * 2) - 0.5) * infinity, 1);
+}

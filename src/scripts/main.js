@@ -129,22 +129,6 @@ deck.addEventListener('p-slides.fragmenttoggle', (event) => {
 	updateProgressBar();
 });
 
-/** @type {Record<`--${string}`, keyof PresentationDeckElement>} */
-const commandMap = {
-	'--next': 'next',
-	'--previous': 'previous',
-	'--next-slide': 'nextSlide',
-	'--previous-slide': 'previousSlide',
-	'--presentation': 'mode',
-	'--speaker': 'mode',
-	'--grid': 'mode'
-};
-deck.addEventListener('command', /** @param {CommandEvent} event */ event => {
-	const property = commandMap[event.command];
-	if (typeof deck[property] === 'function') deck[property]?.();
-	else deck[property] = event.command.slice(2);
-});
-
 uiButtons.fullscreenMode[0].addEventListener('click', () => {
 	if (document.fullscreenElement) {
 		document.exitFullscreen();

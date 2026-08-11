@@ -208,10 +208,6 @@ p-deck:not([mode]) ~ [role='toolbar'] [aria-labelledby='presentationModeTooltip'
 	}
 }
 
-p-fragment, [p-fragment] {
-	transition-duration: var(--fragment-duration);
-}
-
 .astro-code {
 	padding: 0.5em;
 	border-radius: 0.25em;
