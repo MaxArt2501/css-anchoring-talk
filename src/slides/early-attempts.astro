@@ -1,10 +1,13 @@
+---
+import pkg from '../../package.json';
+---
 <p-slide id="misplaced">
   <label for="misplaced-btn">Select a language</label>
   <button
     type="button"
     id="misplaced-btn"
     command="--next"
-    commandfor="deck">Choose&hellip;</button
+    commandfor={pkg.name}>Choose&hellip;</button
   >
   <p-fragment index="0" p-effect="move natural" p-duration="2">
     <img src="../img/cursor-windows.svg" class="cursor" p-fragment="0" p-effect="click" p-delay="2" p-duration="2">
@@ -17,6 +20,19 @@
   </ul>
 </p-slide>
 <style>
+  #misplaced,
+  #extra-long,
+  #fixed-scroll {
+    [p-effect="move natural"] {
+      position: absolute;
+      --from-x: 1em;
+      --from-y: 8.5em;
+
+      > img {
+        height: 2em;
+      }
+    }
+  }
   #misplaced,
   #extra-long {
     button,
@@ -58,16 +74,9 @@
       inset: 8em auto auto 14em;
       margin: 0;
     }
-  }
-  p-fragment {
-    position: absolute;
-    --from-x: 1em;
-    --from-y: 8.5em;
-    --to-x: 9em;
-    --to-y: 2em;
-
-    > img {
-      height: 2em;
+    [p-effect="move natural"] {
+      --to-x: 9em;
+      --to-y: 2em;
     }
   }
 </style>
@@ -84,10 +93,13 @@
   <button
     type="button"
     id="currency-btn"
-    command="toggle-popover"
-    commandfor="currency-dropdown">Choose&hellip;</button
+    command="--next"
+    commandfor={pkg.name}>Choose&hellip;</button
   >
-  <ul popover id="currency-dropdown">
+  <p-fragment index="0" p-effect="move natural" p-duration="2">
+    <img src="../img/cursor-windows.svg" class="cursor" p-fragment="0" p-effect="click" p-delay="2" p-duration="2">
+  </p-fragment>
+  <ul popover p-fragment>
     <li>U.S. dollar (USD)</li>
     <li>Euro (EUR)</li>
     <li>Japanese yen (JPY)</li>
@@ -105,7 +117,11 @@
     label {
       margin-top: 0.5em;
     }
+    button {
+      anchor-name: --currency-btn;
+    }
     ul {
+      position-anchor: --currency-btn;
       width: 15em;
       inset: anchor(end) auto auto anchor(start);
       background: ivory;
@@ -113,12 +129,22 @@
         content: none;
       }
     }
+    [p-effect="move natural"] {
+      --to-x: 14.1em;
+      --to-y: 4.5em;
+    }
   }
 </style>
 <p-slide>
   <div id="fixed-scroll">
     <h4>Ortus et institutio (1841-1865)</h4>
     <h6>Familia medicorum rei publicae faventium</h6>
+    <p-fragment index="0" p-effect="move natural" p-duration="2">
+      <img src="../img/cursor-windows.svg" class="cursor" p-fragment="1" aria-hidden="false">
+    </p-fragment>
+    <p-fragment index="0" p-effect="fade" p-delay="2" popover>
+      François-Marie Arouet, 1694-1778
+    </p-fragment>
     <p>
       Georgius Beniaminus Clemenceau natus est die 28 Septembris 1841 in vico
       Mouilleron-en-Pareds, in domo avorum maternorum, gentis Gautreau, ubi
@@ -144,15 +170,118 @@
       (externes) vocant superavit; anno 1861 Lutetiam petivit ut studia
       perficeret.
     </p>
+    <p-fragment index="1"></p-fragment>
   </div>
 </p-slide>
 <style>
   #fixed-scroll {
     padding-inline: 3em;
-    font-size: 0.6em;
+    font-size: 0.55em;
     overflow: auto;
     display: flex;
     flex-direction: column;
     gap: 1em;
+
+    [p-effect="move natural"] {
+      --from-x: -6em;
+      --from-7: 7.5em;
+      --to-x: 7em;
+      --to-y: 17.5em;
+    }
+    [p-effect="fade"] {
+      position: absolute;
+      display: block;
+      inset: 31.7em auto auto 10.5em;
+      filter: drop-shadow(0 0 .25em #000);
+      --tooltip-bg: ivory;
+    }
+  }
+</style>
+<p-slide>
+  <ul id="folders">
+    <li>
+      Documents
+      <ul>
+        <li>Assessment_final</li>
+        <li>Long<p-fragment p-effect="reveal">, very very</p-fragment> long filename</li>
+        <li>My passwords</li>
+      </ul>
+    </li>
+    <li>Movies</li>
+    <li>Pictures</li>
+  </ul>
+</p-slide>
+<style>
+  #folders {
+    line-height: 1lh;
+    padding: 0;
+    width: 12em;
+
+    &, ul {
+      margin: 0 auto;
+      list-style-type: '';
+    }
+    ul {
+      padding-inline: 1em 0;
+    }
+    li {
+      &::before {
+        content: '📂';
+        display: inline-block;
+        width: 1.1em;
+        position: relative;
+        z-index: 1;
+        text-indent: 0;
+      }
+      li::before {
+        content: '📄';
+      }
+    }
+    li li {
+      position: relative;
+      text-indent: -1.1em;
+      padding-inline-start: 1.1em;
+
+      &::after {
+        content: '';
+        border-style: dashed;
+        border-width: 0 0 .1em .1em;
+        position: absolute;
+        inset: auto 100% .5lh auto;
+        width: .5em;
+        height: 1lh;
+      }
+    }
+
+    p-fragment {
+      white-space: nowrap;
+      text-indent: 0;
+    }
+  }
+</style>
+<p-slide id="how-arrows">
+  <svg viewBox="0 0 200 150">
+    <ellipse cx="50" cy="40" rx="40" ry="25" fill="cyan"/>
+    <text x="50" y="40">A</text>
+    <ellipse cx="150" cy="110" rx="40" ry="25" fill="#faa"/>
+    <text x="150" y="110">B</text>
+    <path d="M80,60L120,90" stroke-width="2" p-fragment p-effect="drawing" pathLength="100"/>
+    <g fill="red" p-fragment p-effect="zoom fade">
+      <path d="M99 87a3 3 0 0 1-3-3v-4a3 3 0 0 1 3-3c.603-.006 6-1 6-5 0-2-2-4-5-4-2.441 0-4 2-4 3a3 3 0 1 1-6 0c0-4.878 4.58-9 10-9 8 0 11 5.982 11 11 0 4.145-2.277 7.313-6.413 8.92-.9.351-1.79.587-2.587.747V84a3 3 0 0 1-3 3"/>
+      <circle cx="99" cy="92" r="3"/>
+    </g>
+  </svg>
+</p-slide>
+<style>
+  #how-arrows {
+    text {
+      font-size: 20px;
+    }
+    svg :not(text) {
+      stroke: black;
+    }
+    [p-fragment] {
+      transform-origin: center;
+    }
   }
 </style>
