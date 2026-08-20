@@ -220,28 +220,40 @@ import Code from "../components/Code.astro";
     <rect x="25" y="40" width="50" height="20" />
     <text x="50" y="50">Hello!</text>
     <g p-fragment>
-      <rect x="35" y="25" width="30" height="14" rx="5"/>
-      <text x="50" y="32">top</text>
-      <rect x="76" y="43" width="30" height="14" rx="5"/>
-      <text x="91" y="50">right</text>
-      <rect x="35" y="61" width="30" height="14" rx="5"/>
+      <rect x="35" y="25" width="30" height="14" rx="1" p-fragment="5:center" p-effect="move & stretch" style="--to-height: 22px; --to-y: -8px"/>
+      <text x="50" y="32" p-fragment=":center" p-effect="move" style="--to-y: -8px">top</text>
+      <rect x="76" y="43" width="30" height="14" rx="1" p-fragment=":center" p-effect="stretch" style="--to-width: 48px"/>
+      <text x="91" y="50" p-fragment=":center" p-effect="move" style="--to-x: 22px">right</text>
+      <rect x="35" y="61" width="30" height="14" rx="1" p-fragment=":center" p-effect="stretch" style="--to-height: 22px"/>
       <text x="50" y="68">bottom</text>
-      <rect x="-6" y="43" width="30" height="14" rx="5"/>
-      <text x="9" y="50">left</text>
+      <rect x="-6" y="43" width="30" height="14" rx="1" p-fragment=":center" p-effect="move & stretch" style="--to-width: 46px; --to-x: -16px"/>
+      <text x="9" y="50" p-fragment=":center" p-effect="move" style="--to-x: 4px">left</text>
     </g>
-    <g p-fragment>
-      <rect x="76" y="17" width="30" height="22" rx="5"/>
+    <g p-fragment class="corners">
+      <rect x="76" y="17" width="30" height="22" rx="1"/>
       <text x="91" y="24">top</text>
       <text x="91" y="32">right</text>
-      <rect x="76" y="61" width="30" height="22" rx="5"/>
+      <rect x="76" y="61" width="30" height="22" rx="1"/>
       <text x="91" y="68">bottom</text>
       <text x="91" y="76">right</text>
-      <rect x="-6" y="17" width="30" height="22" rx="5"/>
+      <rect x="-6" y="17" width="30" height="22" rx="1"/>
       <text x="9" y="24">top</text>
       <text x="9" y="32">left</text>
-      <rect x="-6" y="61" width="30" height="22" rx="5"/>
+      <rect x="-6" y="61" width="30" height="22" rx="1"/>
       <text x="9" y="68">bottom</text>
       <text x="9" y="76">left</text>
+    </g>
+    <g p-fragment=":center">
+      <text x="50" y="32">center</text>
+      <text x="50" y="76">center</text>
+      <text x="-8" y="50">center</text>
+      <text x="89" y="50">center</text>
+    </g>
+    <g p-fragment p-effect="_">
+      <line p-effect="drawing" x1="38" x2="62" y1="33" y2="33" />
+      <line p-effect="drawing" x1="77" x2="101" y1="51" y2="51" />
+      <line p-effect="drawing" x1="38" x2="62" y1="77" y2="77" />
+      <line p-effect="drawing" x1="-20" x2="4" y1="51" y2="51" />
     </g>
   </svg>
 </p-slide>
@@ -259,6 +271,9 @@ import Code from "../components/Code.astro";
 
       &[rx] {
         fill: yellow;
+        .corners & {
+          fill: cyan;
+        }
       }
     }
     path {
@@ -283,6 +298,9 @@ import Code from "../components/Code.astro";
     text {
       font-size: 8px;
       fill: currentColor;
+    }
+    [p-effect="drawing"] {
+      stroke: red;
     }
   }
 </style>

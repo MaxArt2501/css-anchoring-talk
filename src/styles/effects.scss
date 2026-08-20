@@ -37,3 +37,13 @@
 [p-effect~='click'] {
 	scale: clamp(0.75, (abs(1 - var(--fragment-progress) * 2) - 0.5) * infinity, 1);
 }
+
+[p-effect~='stretch'] {
+	width: calc(var(--from-width, 0q) + (var(--to-width, var(--from-width, 0q)) - var(--from-width, 0q)) * var(--fragment-progress));
+	height: calc(var(--from-height, 0q) + (var(--to-height, var(--from-height, 0q)) - var(--from-height, 0q)) * var(--fragment-progress));
+
+	svg & {
+		--from-width: attr(width px);
+		--from-height: attr(height px);
+	}
+}
