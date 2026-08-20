@@ -1,0 +1,288 @@
+---
+import Code from "../components/Code.astro";
+---
+
+<p-slide class="center" id="entering">
+  <h5 p-effect="from left">Entering&hellip;</h5>
+  <h3>
+    <strong p-fragment=":api" p-effect="falling from above" contenteditable>CSS</strong>
+    <strong p-fragment=":api" p-effect="falling from right" contenteditable p-delay="2">Anchor</strong>
+    <strong p-fragment=":api" p-effect="falling from below" contenteditable p-delay="4">
+      Po<p-fragment p-effect="reveal" aria-hidden="false">si</p-fragment>tioning
+    </strong>
+    <strong p-fragment=":api" p-effect="falling from left" contenteditable p-delay="6">API</strong>
+  </h3>
+  <p-fragment index="1"></p-fragment>
+</p-slide>
+<style>
+  #entering {
+    h5 {
+      margin-block: -5em .5em;
+    }
+    strong {
+      display: inline-block;
+      white-space: nowrap;
+  
+      + strong {
+        position: absolute;
+      }
+  
+      &:nth-child(1) {
+        anchor-name: --title-css;
+      }
+      &:nth-child(2) {
+        anchor-name: --title-anchor;
+        position-anchor: --title-css;
+        position-area: right span-bottom;
+        writing-mode: sideways-rl;
+      }
+      &:nth-child(3) {
+        anchor-name: --title-positioning;
+        position-anchor: --title-anchor;
+        position-area: left span-top;
+      }
+      &:nth-child(4) {
+        position-anchor: --title-positioning;
+        position-area: bottom span-right;
+      }
+    }
+    h3:has(+ [aria-hidden='false']) strong {
+      outline: .05em solid red;
+      box-shadow: inset 0 0 0 .05em red;
+    }
+  }
+</style>
+<p-slide class="center">
+  <div class="h3">
+    Anchors must<br>
+    have a <strong>name</strong>
+    <div p-fragment>
+      like <code>--my-anchor</code>
+    </div>
+  </div>
+</p-slide>
+<p-slide class="center">
+  <div class="h3">
+    Anchored elements<br>only with
+    <div p-fragment>
+      <strong>position: absolute</strong>
+    </div>
+    <div p-fragment>
+      or <strong>fixed</strong>
+    </div>
+  </div>
+</p-slide>
+<p-slide grid="2" class="content-center s06">
+  <Code lang="html" code=`<div class="anchor">Hello!</div>
+<div class="box">I'm anchored!</div>`/>
+  <Code p-fragment lang="css" code=`.anchor {
+  anchor-name: --the-anchor;
+}
+.box {
+  position: absolute;
+  position-anchor: --the-anchor;
+}`/>
+  <p-fragment class="output">
+    <div class="anchor">Hello!</div>
+    <div class="box">I'm anchored!</div>
+  </p-fragment>
+</p-slide>
+<style>
+  .output {
+    grid-area: 1 / 2 / 3 / 3;
+    box-shadow: 0 0 .5em;
+    border-radius: .5em;
+    align-content: center;
+    anchor-scope: --the-anchor;
+  }
+  .anchor {
+    padding: .25em;
+    border: .1em solid;
+    width: max-content;
+    margin-inline: auto;
+    anchor-name: --the-anchor;
+  }
+  .box {
+    position: absolute;
+    position-anchor: --the-anchor;
+    padding: .25em 1em;
+    border-radius: 100vmax;
+    background-color: cyan;
+    box-shadow: 0 0 .1em #0005;
+  }
+</style>
+<p-slide>
+  <code class="h2 center" p-effect="dropping from above">
+    position-area
+  </code>
+  <div class="s06 values-container">
+    <code p-fragment=":values" p-effect="dropping from below">block-end</code>
+    <code p-fragment=":values" p-effect="dropping from below">block-start</code>
+    <code p-fragment=":values" p-effect="dropping from below">bottom</code>
+    <code p-fragment=":values" p-effect="dropping from below">center</code>
+    <code p-fragment=":values" p-effect="dropping from below">end</code>
+    <code p-fragment=":values" p-effect="dropping from below">inline-end</code>
+    <code p-fragment=":values" p-effect="dropping from below">inline-start</code>
+    <code p-fragment=":values" p-effect="dropping from below">left</code>
+    <code p-fragment=":values" p-effect="dropping from below">right</code>
+    <code p-fragment=":values" p-effect="dropping from below">self-block-end</code>
+    <code p-fragment=":values" p-effect="dropping from below">self-block-start</code>
+    <code p-fragment=":values" p-effect="dropping from below">self-end</code>
+    <code p-fragment=":values" p-effect="dropping from below">self-inline-end</code>
+    <code p-fragment=":values" p-effect="dropping from below">self-inline-start</code>
+    <code p-fragment=":values" p-effect="dropping from below">self-start</code>
+    <code p-fragment=":values" p-effect="dropping from below">self-x-end</code>
+    <code p-fragment=":values" p-effect="dropping from below">self-x-start</code>
+    <code p-fragment=":values" p-effect="dropping from below">self-y-end</code>
+    <code p-fragment=":values" p-effect="dropping from below">self-y-start</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-all  </code>
+    <code p-fragment=":values" p-effect="dropping from below">span-block-end</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-block-start</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-bottom</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-end</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-inline-end</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-inline-start</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-left</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-right</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-self-block-end</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-self-block-start</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-self-end</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-self-inline-end</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-self-inline-start</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-self-start</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-self-x-end</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-self-x-start</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-self-y-end</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-self-y-start</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-start</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-top</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-x-end</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-x-start</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-y-end</code>
+    <code p-fragment=":values" p-effect="dropping from below">span-y-start</code>
+    <code p-fragment=":values" p-effect="dropping from below">start</code>
+    <code p-fragment=":values" p-effect="dropping from below">top</code>
+    <code p-fragment=":values" p-effect="dropping from below">x-end</code>
+    <code p-fragment=":values" p-effect="dropping from below">x-start</code>
+    <code p-fragment=":values" p-effect="dropping from below">y-end</code>
+    <code p-fragment=":values" p-effect="dropping from below">y-start</code>
+  </div>
+</p-slide>
+<style>
+  .values-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5em;
+    justify-content: center;
+    margin-top: 1em;
+  }
+  code {
+    display: inline-block;
+    transition-delay: calc(sibling-index() * var(--fragment-duration) * 0.2);
+    padding-inline: .25em;
+    border-radius: .25em;
+    box-shadow: 0 0 .25em #000a;
+    background: ivory;
+  }
+</style>
+<p-slide grid="2" class="content-center s06">
+  <Code lang="html" code=`<div class="anchor">Hello!</div>
+<div class="box">I'm anchored!</div>`/>
+  <Code lang="css" code=`.anchor {
+  anchor-name: --the-anchor;
+}
+.box {
+  position: absolute;
+  position-anchor: --the-anchor;
+{#:area;insert{  position-area: bottom;
+}#}}`/>
+  <div class="output">
+    <div class="anchor">Hello!</div>
+    <div class="box" p-fragment=":area" p-effect="vt">I'm anchored!</div>
+  </div>
+</p-slide>
+<style>
+  .box[aria-hidden='false'] {
+    position-area: bottom;
+  }
+</style>
+<p-slide class="stack align-center" id="box-model">
+  <svg viewBox="-25 0 150 100">
+    <g p-fragment="2" aria-hidden="false" >
+      <path p-fragment p-effect="drawing" d="M50,2v96l5-10h-10l5,10" pathLength="100" />
+      <path p-fragment p-effect="drawing" d="M2,50h96l-10-5v10l10-5" pathLength="100" />
+      <rect x="25" y="40" width="50" height="20" fill="#ffffff80" />
+    </g>
+    <g p-fragment="2">
+      <rect x="24.5" width="51" height="100" fill="#ff000080" />
+      <rect x="-25" width="150" y="39.5" height="21" fill="#0000ff50" />
+    </g>
+    <rect x="25" y="40" width="50" height="20" />
+    <text x="50" y="50">Hello!</text>
+    <g p-fragment>
+      <rect x="35" y="25" width="30" height="14" rx="5"/>
+      <text x="50" y="32">top</text>
+      <rect x="76" y="43" width="30" height="14" rx="5"/>
+      <text x="91" y="50">right</text>
+      <rect x="35" y="61" width="30" height="14" rx="5"/>
+      <text x="50" y="68">bottom</text>
+      <rect x="-6" y="43" width="30" height="14" rx="5"/>
+      <text x="9" y="50">left</text>
+    </g>
+    <g p-fragment>
+      <rect x="76" y="17" width="30" height="22" rx="5"/>
+      <text x="91" y="24">top</text>
+      <text x="91" y="32">right</text>
+      <rect x="76" y="61" width="30" height="22" rx="5"/>
+      <text x="91" y="68">bottom</text>
+      <text x="91" y="76">right</text>
+      <rect x="-6" y="17" width="30" height="22" rx="5"/>
+      <text x="9" y="24">top</text>
+      <text x="9" y="32">left</text>
+      <rect x="-6" y="61" width="30" height="22" rx="5"/>
+      <text x="9" y="68">bottom</text>
+      <text x="9" y="76">left</text>
+    </g>
+  </svg>
+</p-slide>
+<style>
+  #box-model {
+    svg {
+      place-self: stretch;
+      aspect-ratio: 1.5;
+    }
+    rect {
+      &:not([fill]) {
+        fill: none;
+        stroke: currentColor;
+      }
+
+      &[rx] {
+        fill: yellow;
+      }
+    }
+    path {
+      fill: none;
+      stroke: red;
+      stroke-width: 4px;
+      stroke-linejoin: round;
+      transition-behavior: allow-discrete;
+      
+      &[aria-hidden="false"] {
+        stroke-linecap: round;
+      }
+    }
+    svg > text {
+      font-size: 14px;
+      font-family: inherit;
+      font-weight: normal;
+      stroke: white;
+      stroke-linejoin: round;
+      paint-order: stroke fill;
+    }
+    text {
+      font-size: 8px;
+      fill: currentColor;
+    }
+  }
+</style>

@@ -75,8 +75,16 @@ deck.addEventListener(
 	{ capture: true },
 );
 
+/** @param {Element[]} fragments */
+const toggleFragments = fragments => {
+	for (const fragment of fragments) {
+		fragment.ariaHidden = fragment.ariaHidden === 'false';
+	}
+};
+
 deck.addEventListener('p-slides.fragmenttoggle', event => {
-	for (const fragment of event.detail.fragments) {
+	const { fragments } = event.detail;
+	for (const fragment of fragments) {
 		const isHidden = fragment.ariaHidden === 'true';
 		if (fragment instanceof HTMLDialogElement) {
 			if (isHidden) fragment.close();
@@ -87,6 +95,11 @@ deck.addEventListener('p-slides.fragmenttoggle', event => {
 		} else if (fragment.hasAttribute('popover')) {
 			fragment[isHidden ? 'hidePopover' : 'showPopover']();
 		}
+	}
+	const viewTransitionedFragments = fragments.filter(fragment => fragment.getAttribute('p-effect') === 'vt');
+	if (viewTransitionedFragments.length) {
+		toggleFragments(viewTransitionedFragments);
+		document.startViewTransition(() => toggleFragments(viewTransitionedFragments));
 	}
 });
 

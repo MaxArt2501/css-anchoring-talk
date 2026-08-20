@@ -106,7 +106,7 @@ text {
 	font-size: 5px;
 	font-weight: bold;
 	text-anchor: middle;
-	alignment-baseline: middle;
+	alignment-baseline: central;
 }
 
 :is(line, path, polyline, polygon):is(.arrow, [p-effect~='arrow']) {
