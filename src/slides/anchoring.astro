@@ -5,12 +5,12 @@ import Code from "../components/Code.astro";
 <p-slide class="center" id="entering">
   <h5 p-effect="from left">Entering&hellip;</h5>
   <h3>
-    <strong p-fragment=":api" p-effect="falling from above" contenteditable>CSS</strong>
-    <strong p-fragment=":api" p-effect="falling from right" contenteditable p-delay="2">Anchor</strong>
-    <strong p-fragment=":api" p-effect="falling from below" contenteditable p-delay="4">
+    <strong p-fragment=":api" p-effect="boing from above" contenteditable>CSS</strong>
+    <strong p-fragment=":api" p-effect="boing from right" contenteditable p-delay="2">Anchor</strong>
+    <strong p-fragment=":api" p-effect="boing from below" contenteditable p-delay="4">
       Po<p-fragment p-effect="reveal" aria-hidden="false">si</p-fragment>tioning
     </strong>
-    <strong p-fragment=":api" p-effect="falling from left" contenteditable p-delay="6">API</strong>
+    <strong p-fragment=":api" p-effect="boing from left" contenteditable p-delay="6">API</strong>
   </h3>
   <p-fragment index="1"></p-fragment>
 </p-slide>
@@ -55,7 +55,7 @@ import Code from "../components/Code.astro";
 <p-slide class="center">
   <div class="h3">
     Anchors must<br>
-    have a <strong>name</strong>
+    have a <strong>name</strong><p-fragment index="1" p-effect="reveal">*</p-fragment>
     <div p-fragment>
       like <code>--my-anchor</code>
     </div>
@@ -302,5 +302,105 @@ import Code from "../components/Code.astro";
     [p-effect="drawing"] {
       stroke: red;
     }
+  }
+</style>
+<p-slide>
+  <svg viewBox="-25 0 150 100">
+    <g id="base-anchor">
+      <rect x="24.5" width="51" height="100" fill="#ff000080" />
+      <rect x="-25" width="150" y="39.5" height="21" fill="#0000ff50" />
+      <rect x="25" y="40" width="50" height="20"/>
+      <text x="50" y="50">Hello!</text>
+    </g>
+    <g p-fragment="3" aria-hidden="false">
+      <g p-fragment>
+        <rect x="35" y="25" width="30" height="14" rx="1"/>
+        <text x="50" y="32">top</text>
+        <rect x="76" y="43" width="30" height="14" rx="1"/>
+        <text x="91" y="50">right</text>
+        <rect x="35" y="61" width="30" height="14" rx="1"/>
+        <text x="50" y="68">bottom</text>
+        <rect x="-6" y="43" width="30" height="14" rx="1"/>
+        <text x="9" y="50">left</text>
+      </g>
+      <g p-fragment>
+        <rect x="26" y="25" width="48" height="14" rx="1"/>
+        <text x="50" y="32">block-start</text>
+        <rect x="76" y="43" width="44" height="14" rx="1"/>
+        <text x="98" y="50">inline-end</text>
+        <rect x="30" y="61" width="40" height="14" rx="1"/>
+        <text x="50" y="68">block-end</text>
+        <rect x="-25" y="43" width="49" height="14" rx="1"/>
+        <text x="-1" y="50">inline-start</text>
+      </g>
+      <g p-fragment class="corners">
+        <rect x="76" y="17" width="30" height="22" rx="1"/>
+        <text x="91" y="24">start</text>
+        <text x="91" y="32">end</text>
+        <rect x="76" y="61" width="30" height="14" rx="1"/>
+        <text x="91" y="68">end</text>
+        <rect x="-6" y="25" width="30" height="14" rx="1"/>
+        <text x="9" y="32">start</text>
+        <rect x="-6" y="61" width="30" height="22" rx="1"/>
+        <text x="9" y="68">end</text>
+        <text x="9" y="76">start</text>
+      </g>
+    </g>
+    <g p-fragment="3">
+      <rect x="40" y="25" width="20" height="14" rx="1" p-fragment="4" p-effect="move & stretch" style="--to-x: -15px; --to-width: 60px"/>
+      <rect x="42" y="28" width="0" height="9" rx="1" class="highlight" p-fragment p-effect="stretch" style="--to-width: 42px"/>
+      <text x="72" y="32" p-fragment="4" p-effect="move & unroll" style="--to-x: -17px; --cover-width: 11ch">top span-right</text>
+    </g>    
+    <g p-fragment="6">
+      <rect x="-11" y="40" width="35" height="20" rx="1" p-fragment="6" p-effect="move & stretch" style="--to-y: -10px; --to-height: 40px" p-delay="1"/>
+      <rect x="-10" y="50" width="0" height="9" rx="1" class="highlight" p-fragment="6" p-delay="2" p-effect="stretch" style="--to-width: 33px"/>
+      <text x="7" y="46">left</text>
+      <text x="7" y="54">span-all</text>
+    </g>    
+    <g p-fragment="7">
+      <rect x="25" y="40" width="50" height="20" rx="1" p-fragment="7" p-effect="stretch" style="--to-width: 80px; --to-height: 40px" p-delay="1"/>
+      <rect x="48" y="56" width="0" height="9" rx="1" class="highlight" p-fragment="7" p-delay="2" p-effect="stretch" style="--to-width: 34px"/>
+      <text x="50" y="50" p-fragment="7" p-effect="move" p-delay="1" style="--to-x: 15px; --to-y: 10px">span-end</text>
+    </g>    
+  </svg>
+</p-slide>
+<style>
+  #base-anchor {
+    rect:last-of-type {
+      fill: none;
+      stroke: currentColor;
+    }
+    text {
+      font-size: 14px;
+      font-family: inherit;
+      font-weight: normal;
+      stroke: white;
+      stroke-linejoin: round;
+      paint-order: stroke fill;
+    }
+
+    ~ * {
+      rect {
+        &[rx] {
+          fill: yellow;
+          stroke: currentColor;
+        }
+      }
+      .corners {
+        rect {
+          fill: cyan;
+        }
+      }
+      text {
+        font-size: 8px;
+      }
+    }
+  }
+  .highlight {
+    stroke: none !important;
+    fill: #f448 !important;
+  }
+  [p-effect~="unroll"] {
+    clip-path: inset(0 calc((1 - var(--fragment-progress)) * var(--cover-width, 100%)) 0 0);
   }
 </style>
