@@ -72,9 +72,10 @@ const weightMap = {
   900: 'black'
 };
 
-const sources = definitions.map(([range, { src, 'font-style': style, 'font-weight': weight }]) => {
+const sources = definitions.map(([range, { src, 'font-style': style, 'font-weight': weights }]) => {
   const sourceDef = Array.from(src.replace(/\s*;$/, '').matchAll(/\b([a-z]+)\(([^)]*)\)/g), ([, param, value]) => [param, value]);
-  const variant = `${weightMap[weight]}${style === 'italic' ? '-italic' : ''}.${range}`;
+  const weightName = weights.split(' ').map(weight => weightMap[weight]).join('-');
+  const variant = `${weightName}${style === 'italic' ? '-italic' : ''}.${range}`;
   return [variant, Object.fromEntries(sourceDef)];
 });
 
@@ -84,6 +85,7 @@ const fileNames = await Promise.all(
     const stream = Readable.fromWeb(fontResponse.body);
     const fileName = `fonts/${normalizedFontName}.${variant}${extname(source.url)}`;
     stream.pipe(createWriteStream(`./public/${fileName}`));
+    stream.once('end', () => console.log(`Written font file ${fileName}`));
     return fileName;
   })
 );
@@ -93,8 +95,10 @@ const outputCSS = definitions
     const fileName = fileNames[index];
     return `/* ${range} */\n@font-face {\n${Object.entries(def)
       .map(([property, value]) => `  ${property}: ${value};\n`)
-      .join('')}  src: url('../${fileName}') format(${sources[index][1].format});\n}\n`;
+      .join('')}  src: url('../../${fileName}') format(${sources[index][1].format});\n}\n`;
   })
   .join('');
 
-writeFileSync(`./src/styles/typography/${normalizedFontName}.scss`, outputCSS);
+const fontFile = `src/styles/typography/${normalizedFontName}.scss`;
+writeFileSync(fontFile, outputCSS);
+console.log(`Written CSS font definition file ${fontFile}`);
