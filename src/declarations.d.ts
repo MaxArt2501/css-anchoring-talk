@@ -1,11 +1,13 @@
 declare namespace astroHTML.JSX {
   interface HTMLAttributes {
-		/** Fragment/slide transition effect */
+		/** Slide transition effect */
 		effect?: string;
-		/** Fragment/slide transition duration multiplier (default: 1) */
-		duration?: string;
-		/** Fragment/slide transition delay multiplier (default: 0) */
-		delay?: string;
+		/** Fragment transition effect */
+		'p-effect'?: string;
+		/** Fragment transition duration multiplier (default: 1) */
+		'p-duration'?: string;
+		/** Fragment transition delay multiplier (default: 0) */
+		'p-delay'?: string;
 		/** Sets the element as a flex container with the given flow specifier (default: row) */
 		flex?: string | boolean;
 		/** Sets the element as a grid container with the given equally wide columns */
@@ -20,4 +22,8 @@ declare namespace astroHTML.JSX {
   interface SVGAttributes {
 		effect?: string;
 	}
+}
+
+const a: astroHTML.JSX.HTMLAttributes = {
+	'p-effect': 43
 }

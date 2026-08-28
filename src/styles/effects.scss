@@ -47,3 +47,15 @@
 		--from-height: attr(height px);
 	}
 }
+
+[p-effect~="unroll"] {
+	clip-path: inset(0 calc((1 - var(--fragment-progress)) * var(--cover-width, 100%)) 0 0);
+}
+
+[p-effect~="appear"] {
+	opacity: clamp(0, var(--fragment-progress) * infinity, 1);
+}
+
+[p-effect~="staggering"] {
+	transition-timing-function: linear(0, 1 0.001%, 1);
+}

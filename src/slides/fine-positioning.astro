@@ -1,0 +1,186 @@
+---
+import Code from "../components/Code.astro";
+---
+
+<p-slide class="center">
+	<h4>Only <strong>presets</strong>?</h4>
+	<p-fragment class="h2"><strong>Nope!</strong></p-fragment>
+</p-slide>
+<p-slide flex gap="1" class="align-center">
+	<p-fragment p-effect="reveal" class="s05">
+		<Code lang="css" code={`.box {
+	position: absolute;
+	position-anchor: --the-anchor;         
+	{#strike{position-area: top span-right;}#}
+{#:anchor;insert{  {#8:axis;highlight red{bottom}#}: {#:anchor;highlight green{anchor}#}({#:bs;-reveal{top}#}{#:bs;reveal{{#:bs;highlight{{#:start;-reveal{block-}#}{#9:perc;-reveal{start}#}{#:perc;reveal{{#10:minus;-reveal{0}#}{#:minus;reveal{-25}#}%}#}}#}}#});
+	{#:axis;highlight red{left}#}: {#4:calc;reveal{calc(}#}{#:anchor;highlight green{anchor}#}({#:bs;-reveal{left}#}{#:bs;reveal{{#:bs;highlight{{#:start;-reveal{inline-}#}{#:perc;-reveal{start}#}{#:perc;reveal{{#11:inside;-reveal{0%}#}{#:inside;reveal{inside}#}}#}}#}}#}){#:calc;reveal{ + 1ch)}#};
+}#}}`}/>
+	</p-fragment>
+  <svg viewBox="0 20 100 60">
+		<use href="#base-anchor"/>
+		<g p-fragment="0">
+			<g p-fragment=":minus" p-effect="move" style="--to-y: 6px">
+				<rect x="25" y="25" width="60" height="14" rx="1" p-fragment=":calc" p-effect="move" style="--to-x: 3px; --to-y: 0px"/>
+				<text x="55" y="32" p-fragment=":calc" p-effect="move" style="--to-x: 3px; --to-y: 0px">On top, spanning right</text>
+			</g>
+    </g>  
+	</svg>
+</p-slide>
+<style>
+	p-fragment[p-effect="reveal"] {
+		flex-shrink: 0;
+	}
+	rect {
+		fill: yellow;
+		stroke: currentColor;
+	}
+</style>
+<p-slide>
+  <code class="h2 center" p-effect="dropping from above">
+    anchor(&hellip;)
+  </code>
+  <div class="props-container">
+    <code p-fragment=":props" p-effect="dropping from below">bottom</code>
+    <code p-fragment=":props" p-effect="dropping from below">left</code>
+    <code p-fragment=":props" p-effect="dropping from below">right</code>
+    <code p-fragment=":props" p-effect="dropping from below">top</code>
+    <code p-fragment=":props" p-effect="dropping from below">inset</code>
+    <code p-fragment=":props" p-effect="dropping from below">inset-block</code>
+    <code p-fragment=":props" p-effect="dropping from below">inset-block-end</code>
+    <code p-fragment=":props" p-effect="dropping from below">inset-block-start</code>
+    <code p-fragment=":props" p-effect="dropping from below">inset-inline</code>
+    <code p-fragment=":props" p-effect="dropping from below">inset-inline-end</code>
+    <code p-fragment=":props" p-effect="dropping from below">inset-inline-start</code>
+  </div>
+</p-slide>
+<style>
+  .props-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5em;
+    justify-content: center;
+    margin-top: 1em;
+  }
+  code {
+    display: inline-block;
+    transition-delay: calc(sibling-index() * var(--fragment-duration) * 0.2);
+    padding-inline: .25em;
+    border-radius: .25em;
+    box-shadow: 0 0 .25em #000a;
+    background: ivory;
+  }
+</style>
+<p-slide flex gap="1" class="align-center">
+	<p-fragment p-effect="reveal" class="s05" p-effect#1:a="foo">
+		<Code lang="css" code={`.box {
+	position: absolute;
+	position-anchor: --the-anchor;         
+	position-area: bottom{#:span;reveal{ span-right}#};
+{#:size;insert{  min-width: {#:size;highlight{anchor-size({#:height;-reveal{{#6;reveal{width}#}}#}{#:height;reveal{height}#})}#};
+}#}}`}/>
+	</p-fragment>
+	<svg viewBox="0 20 100 60">
+		<use href="#base-anchor"/>
+		<g p-fragment="0">
+			<g p-fragment="7:height" p-effect="fade" aria-hidden="false">
+				<g p-fragment=":span" p-effect="move" style="--to-x: -12px">
+					<rect x="37" y="61" width="26" height="14" rx="1" p-fragment="3" p-effect="stretch" style="--to-width: 50px"/>
+					<text x="50" y="65">Option 1</text>
+					<text x="50" y="71">Option 2</text>
+				</g>
+				<g p-fragment p-effect="appear">
+					<rect x="25" y="61" width="50" height="14" rx="1" p-effect="stretch" style="--to-width: 63.4px"/>
+					<text x="38" y="65">Option 1</text>
+					<text x="56.7" y="71" p-effect="unroll" style="--cover-width: 15ch">Option 2 but not really</text>
+				</g>
+			</g>
+			<g p-fragment=":height" p-effect="appear">
+				<rect x="25" y="61" width="53.4" height="14" rx="1" p-effect="stretch" style="--to-width: 20px"/>
+				<text x="38" y="65">Option 1</text>
+				<text x="56.7" y="71">Option 2 but not really</text>
+			</g>
+    </g>
+	</svg>
+</p-slide>
+<p-slide>
+  <code class="h2 center" p-effect="dropping from above">
+    anchor-size(&hellip;)
+  </code>
+	<div class="props-container s06">
+		<code p-fragment=":props-inset" p-effect="dropping from below">bottom</code>
+		<code p-fragment=":props-inset" p-effect="dropping from below">left</code>
+		<code p-fragment=":props-inset" p-effect="dropping from below">right</code>
+		<code p-fragment=":props-inset" p-effect="dropping from below">top</code>
+		<code p-fragment=":props-inset" p-effect="dropping from below">inset</code>
+		<code p-fragment=":props-inset" p-effect="dropping from below">inset-block</code>
+		<code p-fragment=":props-inset" p-effect="dropping from below">inset-block-end</code>
+		<code p-fragment=":props-inset" p-effect="dropping from below">inset-block-start</code>
+		<code p-fragment=":props-inset" p-effect="dropping from below">inset-inline</code>
+		<code p-fragment=":props-inset" p-effect="dropping from below">inset-inline-end</code>
+		<code p-fragment=":props-inset" p-effect="dropping from below">inset-inline-start</code>
+	</div>
+  <div class="props-container s06">
+		<code p-fragment=":props-size" p-effect="dropping from below">width</code>
+    <code p-fragment=":props-size" p-effect="dropping from below">height</code>
+    <code p-fragment=":props-size" p-effect="dropping from below">min-width</code>
+    <code p-fragment=":props-size" p-effect="dropping from below">min-height</code>
+    <code p-fragment=":props-size" p-effect="dropping from below">max-width</code>
+    <code p-fragment=":props-size" p-effect="dropping from below">max-height</code>
+    <code p-fragment=":props-size" p-effect="dropping from below">block-size</code>
+    <code p-fragment=":props-size" p-effect="dropping from below">inline-size</code>
+    <code p-fragment=":props-size" p-effect="dropping from below">min-block-size</code>
+    <code p-fragment=":props-size" p-effect="dropping from below">min-inline-size</code>
+    <code p-fragment=":props-size" p-effect="dropping from below">max-block-size</code>
+    <code p-fragment=":props-size" p-effect="dropping from below">max-inline-size</code>
+	</div>
+	<div class="props-container s06">
+		<code p-fragment=":props-margin" p-effect="dropping from below">margin</code>
+    <code p-fragment=":props-margin" p-effect="dropping from below">margin-bottom</code>
+    <code p-fragment=":props-margin" p-effect="dropping from below">margin-left</code>
+    <code p-fragment=":props-margin" p-effect="dropping from below">margin-right</code>
+    <code p-fragment=":props-margin" p-effect="dropping from below">margin-top</code>
+    <code p-fragment=":props-margin" p-effect="dropping from below">margin-block</code>
+    <code p-fragment=":props-margin" p-effect="dropping from below">margin-block-end</code>
+    <code p-fragment=":props-margin" p-effect="dropping from below">margin-block-start</code>
+    <code p-fragment=":props-margin" p-effect="dropping from below">margin-inline</code>
+    <code p-fragment=":props-margin" p-effect="dropping from below">margin-inline-end</code>
+    <code p-fragment=":props-margin" p-effect="dropping from below">margin-inline-start</code>
+  </div>
+</p-slide>
+<style>
+	[p-fragment=':props-size'] {
+		background-color: #A0C6E3;
+	}
+	[p-fragment=':props-margin'] {
+		background-color: #F5C899;
+	}
+</style>
+<p-slide>
+	<h2 class="center">
+		<div p-effect="from start" p-duration="2">
+			<code>absolute</code>
+		</div>
+		or
+		<div p-effect="from end" p-duration="2">
+			<code>fixed</code>?
+		</div>
+	</h2>
+</p-slide>
+<p-slide flex gap="1" class="align-center">
+	<p-fragment p-effect="reveal" class="s05" p-effect#1:a="foo">
+		<Code lang="css" code={`.box {
+	position: absolute;
+	position-anchor: --the-anchor;         
+	bottom: anchor(outside);
+	left: anchor(inside);
+{#:right;insert{  right: {#:right;highlight{0px}#};
+}#}}`}/>
+	</p-fragment>
+	<svg viewBox="0 20 100 60">
+		<use href="#base-anchor"/>
+		<g p-fragment="0">
+			<rect x="25" y="25" width="60" height="14" rx="1" p-fragment=":right" p-effect="stretch" style="--to-width: 74.5px"/>
+			<text x="55" y="32">On top, spanning right</text>
+    </g>
+	</svg>
+</p-slide>
