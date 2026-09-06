@@ -60,14 +60,9 @@ import Code from "../components/Code.astro";
     gap: .5em;
     justify-content: center;
     margin-top: 1em;
-  }
-  code {
-    display: inline-block;
-    transition-delay: calc(sibling-index() * var(--fragment-duration) * 0.2);
-    padding-inline: .25em;
-    border-radius: .25em;
-    box-shadow: 0 0 .25em #000a;
-    background: ivory;
+		> code {
+			transition-delay: calc(sibling-index() * var(--fragment-duration) * 0.2);
+		}
   }
 </style>
 <p-slide flex gap="1" class="align-center">

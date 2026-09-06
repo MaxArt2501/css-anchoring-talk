@@ -18,9 +18,12 @@ declare namespace astroHTML.JSX {
 		right?: string;
 		bottom?: string;
 		left?: string;
+		gap?: string;
 	}
   interface SVGAttributes {
-		effect?: string;
+		'p-effect'?: string;
+		w?: string;
+		h?: string;
 	}
 }
 

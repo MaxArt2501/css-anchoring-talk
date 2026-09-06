@@ -1,0 +1,344 @@
+---
+import Code from "../components/Code.astro";
+---
+
+<p-slide>
+	<h2 class="center">First stuff? 😏</h2>
+</p-slide>
+<p-slide flex gap="1" class="align-center justify-center">
+	<p-fragment p-effect="reveal" class="s05" p-effect#1:a="foo">
+		<Code lang="css" code={`#help-menu {
+	position: absolute;
+	position-anchor: --help-btn;         
+	position-area: bottom span-right;
+{#4:try;insert{  {#:try;highlight{position-try-fallbacks}#}: {#5:flip;reveal{{#:flip;highlight green{flip-inline}#}}#};
+}#}}`}/>
+	</p-fragment>
+	<aside>
+		<div class="windows">
+			<div id="notepad" class="dialog window" aria-current="true">
+				<header>
+					<img src="../img/win95-note-16-icon.png" alt="" class="icon">
+					<span class="title">Untitled - Notepad</span>
+					<button type="button" class="btn">
+						<img src="../img/win95-minimize-icon.svg" alt="">
+					</button>
+					<button type="button" class="btn">
+						<img src="../img/win95-restore-icon.svg" alt="">
+					</button>
+					<button type="button" class="btn">
+						<img src="../img/win95-close-icon.svg" alt="">
+					</button>
+				</header>
+				<div role="menu">
+					<button type="button" disabled><u>F</u>ile</button>
+					<button type="button" disabled><u>E</u>dit</button>
+					<button type="button" disabled><u>S</u>earch</button>
+					<button type="button" style="anchor-name: --help-menu-1; --to-x: calc(var(--px) * 70)" p-fragment="2" p-effect="move">
+						<u>H</u>elp
+					</button>
+					<div p-fragment p-effect="fade" id="help-menu-1" class="menu">
+						<button type="button"><span><u>H</u>elp Topics</span></button>
+						<hr>
+						<button type="button"><span><u>A</u>bout Notepad</span></button>
+					</div>
+					<div p-fragment id="help-menu-1b" class="menu" p-effect="fade & move" style="--to-x: calc(var(--px) * -70)">
+						<button type="button"><span><u>H</u>elp Topics</span></button>
+						<hr>
+						<button type="button"><span><u>A</u>bout Notepad</span></button>
+						<!-- <button type="button"><span>About <u>Y</u>ou</span></button>
+						<hr>
+						<button type="button"><span><u>T</u>rust me bro</span></button> -->
+					</div>
+				</div>
+				<textarea name="notepad-txt-1" id="notepad-txt"></textarea>
+			</div>
+		</div>
+	</aside>
+</p-slide>
+<style>
+	aside {
+		container-type: inline-size;
+		flex: 1 1 auto;
+		aspect-ratio: 2;
+	}
+	.windows {
+		--length-1: calc(100cqw / 240);
+		contain: paint;
+
+		.dialog {
+			width: calc(100% + var(--px) * 4);
+			margin: calc(var(--px) * -2);
+			margin-block-end: auto;
+		}
+	}
+	[id^='help-menu-1'] {
+		position: fixed;
+		position-anchor: --help-menu-1;
+		position-area: none;
+		top: anchor(bottom);
+		left: anchor(left);
+		white-space: nowrap;
+		display: grid;
+		margin-inline-end: -100vw;
+
+		&:has(+ [aria-hidden='false']) {
+			display: none;
+		}
+	}
+</style>
+<p-slide gap="1">
+  <code class="h2 center" p-effect="dropping from above">
+    position-try-fallbacks
+  </code>
+	<p-fragment class="center">Comma-separated list</p-fragment>
+	<div flex gap="0.5" class="align-center justify-center">
+		<svg viewBox="0 0 10 80" h="6">
+			<path p-fragment=":points" p-effect="drawing" pathLength="100" p-duration="2" fill="none" d="M0,40A5,5 0 0 0 5,35V5A5,5 0 0 1 10,1M0,40A5,5 0 0 1 5,45V74A5,5 0 0 0 10,79" stroke-width="2"/>
+		</svg>
+		<ul>
+			<li p-fragment=":points" p-effect="fade" p-delay="1">alternative position</li>
+			<li p-fragment>&ldquo;try tactic&rdquo;</li>
+			<li p-fragment>custom position</li>
+		</ul>
+	</div>
+</p-slide>
+<style>
+	path {
+		stroke: var(--brand-color);
+	}
+	ul {
+		margin: 0;
+		line-height: 2;
+	}
+</style>
+<p-slide class="justify-between">
+	<h2 class="center" p-effect="falling from above">Try tactics</h2>
+	<div grid class="align-center justify-center">
+		<div>
+			<code p-fragment>flip-inline</code>
+			<div p-fragment>
+				(<code>flip-x</code>)
+			</div>
+		</div>
+		<Code lang="css" code={`.menu {
+	position-area: bottom {#:flin;strike{span-right}#};
+{#:flin;insert{                        span-left
+}#}}`} p-fragment class="s05" />
+		<div p-fragment>
+			<code>flip-block</code>
+			<div>
+				(<code>flip-y</code>)
+			</div>
+		</div>
+		<Code lang="css" code={`.menu {
+	position-area: {#:flbl;strike{bottom}#} span-right;
+{#:flbl;insert{                 top
+}#}}`} p-fragment class="s05" />
+			<code p-fragment>flip-start</code>
+		<Code lang="css" code={`.menu {
+	position-area: {#:flst;strike{bottom span-right}#};
+{#:flst;insert{                 span-bottom right
+}#}}`} p-fragment class="s05" />
+	</div>
+</p-slide>
+<style>
+	[grid] {
+		grid-template-columns: auto auto;
+		gap: 0.5em 1em;
+		justify-items: ;
+		> :nth-child(odd) {
+			text-align: end;
+		}
+	}
+</style>
+<p-slide gap="0.5">
+	<h2 class="center" p-effect="dropping from above">Custom positions</h2>
+	<Code lang="css" code={`.menu {
+	position-area: bottom span-right;
+	position-try-fallbacks: {#reveal{{#3:dashed;highlight blue{--my-alternative}#}}#};
+{#2:ptry;insert{}
+
+{#:ptry;highlight{@position-try}#}{#:dashed;reveal{ {#:dashed;highlight blue{--my-alternative}#}}#} {
+{#insert{  position-area: top span-left; {#reveal{/* 🤔 */}#}
+{#insert{  inset-inline: anchor(inside);
+{#insert{  min-width: anchor-size();
+{#insert{  margin-block: 0.5rem;
+{#insert{  position-anchor: --other-anchor;
+{#insert{  {#:cupr;-reveal{{#strike{background-color: red;}#}}#}{#:cupr;reveal{{#strike{--my-flag: 1;}#}}#}
+}#}}#}}#}}#}}#}}#}}#}}
+`} p-fragment class="s06 self-center" />
+</p-slide>
+<p-slide>
+	<p-fragment index="2:scroll" p-effect="move">
+		<svg viewBox="-5 -5 10 10" class="warning-dot">
+			<circle r="4.5" fill="yellow" stroke="currentColor" />
+			<circle cy="2" r="1" fill="currentColor" />
+			<path d="M0,-2v1.5" style="stroke: currentColor" stroke-width="2" stroke-linecap="round"/>
+		</svg>
+		<div class="center" p-effect="move">
+			Here comes the problem&hellip;
+		</div>
+	</p-fragment>
+	<p-fragment p-group="scroll" p-effect="fade" aria-hidden="false">
+		<p-fragment p-effect="move natural" p-duration="2">
+			<img src="../img/cursor-windows.svg" class="cursor" p-fragment=":click" p-effect="click" p-duration="2">
+		</p-fragment>
+	</p-fragment>
+	<p-fragment p-group="click" p-delay="2" p-effect="dropping from above" p-duration="2" class="tooltip-dropper">
+		<div class="tooltip" p-fragment="4:flip" p-effect="shift-top" style="--to-y: 4em">Warning!</div>
+	</p-fragment>
+	<p-fragment p-group="scroll" p-effect="fade" p-delay="2" aria-hidden="false">
+		<p-fragment p-group="scroll" p-effect="fade & move" class="scrollbar"></p-fragment>
+	</p-fragment>
+	<svg class="circled" viewBox="0 0 10 10" p-fragment=":flip" p-effect="move" style="--to-y: 4em">
+		<path d="M8,8a4.5,4 0 1 1 0,-6a2.7,2 20 1 1 -5,4.5" p-fragment=":circle" p-effect="drawing" />
+	</svg>
+</p-slide>
+<style>
+	[index='2:scroll'] {
+		--to-y: -4.5em;
+		anchor-name: --warning-dot;
+		div {
+			position: absolute;
+			inset: 8.5em 0 auto;
+			--to-y: -3.5em;
+		}
+	}
+	.warning-dot {
+		height: 1em;
+		display: block;
+		margin-inline: auto;
+	}
+	[p-effect='move natural'] {
+		display: block;
+		--from-x: -2em;
+		--from-y: 2em;
+		--to-x: 11.5em;
+		--to-y: -0.5em;
+		img {
+			height: 1.5em;
+		}
+	}
+
+	.tooltip {
+		padding: .25em .5em;
+		border: .1em solid;
+		border-radius: .75em;
+		margin-block: .5em;
+		margin-inline: auto;
+		width: max-content;
+		background: ivory;
+		position: relative;
+		&::before {
+			content: '';
+			background: inherit;
+			border-bottom: inherit;
+			border-right: inherit;
+			rotate: 45deg;
+			position: absolute;
+			width: .5em;
+			height: .5em;
+			inset: auto 0 -.31em;
+			margin: auto;
+		}
+	}
+	.tooltip-dropper {
+		position: absolute;
+		position-anchor: --warning-dot;
+		inset: auto 0 anchor(outside);
+		text-align: center;
+		> p-fragment {
+			display: inline-block;
+		}
+	}
+	.scrollbar {
+		background: gray;
+		border-radius: 100vmax;
+		width: .25em;
+		height: 5em;
+		position: absolute;
+		inset: 3em 5em auto auto;
+		--to-y: 3em;
+	}
+	.circled {
+		position: absolute;
+		height: 1.5em;
+		inset: 0 auto auto;
+
+		path {
+			fill: none;
+			stroke: red;
+			--length: 32;
+			&[aria-hidden='false'] {
+				stroke-linecap: round;
+			}
+		}
+	}
+	[p-effect='shift-top'] {
+		top: calc(var(--fragment-progress) * var(--to-y));
+	}
+</style>
+<p-slide gap="1" class="center">
+	<div p-effect="dropping from above" class="h4">You <a href="https://goulet.dev/posts/tooltip-with-popover-anchor-positioning/">can</a> do something</div>
+	<div p-fragment p-effect="dropping from below" class="h3">&hellip; but&hellip;</div>
+</p-slide>
+<p-slide gap="0.25" class="justify-start">
+	<code p-effect="dropping from above" class="h3 center">@container anchored(&hellip;)</code>
+	<Code p-fragment lang="css" code={`.tooltip {
+	position: absolute;
+	position-anchor: --reference-42;
+	position-area: top;
+	position-try-fallbacks: {#3:name;highlight{flip-block}#};
+{#2:acq;insert{	{#:acq;highlight green{container-type: anchored;}#}
+}#}{#insert{
+	.tip {
+		bottom: 100%;
+		...
+	}
+}#}{#:acq;insert{	@container {#:acq;highlight green{anchored}#}(fallback: {#:name;highlight{flip-block}#}) {
+		.tip {
+			inset-block: 100% auto;
+			...
+		}
+	}
+}#}}`} class="self-center s05"/>
+</p-slide>
+<p-slide class="center">
+	<div class="between-parentheses">
+		<svg viewBox="0 0 15 80">
+			<path d="M12,0Q0,40 12,80h3Q5,40 15,0"/>
+		</svg>
+		<code class="h3" p-effect="dropping from above">position-try-order</code>
+		<code class="h3" p-effect="dropping from below">position-visibility</code>
+		<svg viewBox="0 0 15 80">
+			<path d="M3,0Q15,40 3,80H0Q10,40 0,0"/>
+		</svg>
+	</div>
+</p-slide>
+<style>
+	.between-parentheses {
+		display: grid;
+		grid-template: auto auto / auto 1fr auto;
+		gap: 0.5em;
+		svg {
+			grid-column: 1;
+			grid-row: 1 / 3;
+			height: 7em;
+			path {
+				stroke: none;
+				fill: currentColor;
+			}
+			&:last-of-type {
+				grid-column: 3;
+			}
+		}
+		code {
+			grid-column: 2;
+			align-self: end;
+			&:last-of-type {
+				align-self: start;
+			}
+		}
+	}
+</style>

@@ -225,3 +225,17 @@ p-deck:not([mode]) ~ [role='toolbar'] [aria-labelledby='presentationModeTooltip'
 		box-sizing: content-box;
 	}
 }
+
+code:not(pre code) {
+	display: inline-block;
+	padding-inline: .25em;
+	border-radius: .25em;
+	box-shadow: 0 0 .25em #000a;
+	background: ivory;
+}
+
+a {
+	&:any-link {
+		color: var(--brand-color);
+	}
+}

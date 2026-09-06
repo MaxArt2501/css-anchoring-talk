@@ -26,6 +26,7 @@ const setActiveWindow = (dialog, active = true) => {
 	if (!slide) return;
 	dialog.ariaCurrent = String(active);
 	const taskbar = slide.querySelector(".taskbar");
+	if (!taskbar) return;
 	const btn = taskbar.querySelector(`button[aria-controls="${dialog.id}"]`);
 	if (btn) {
 		btn.ariaExpanded = String(active);
