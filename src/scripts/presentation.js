@@ -9,6 +9,8 @@ deck.addEventListener(
 	(event) => {
 		if (event.command === "--show") {
 			if (event.target instanceof HTMLDialogElement) event.target.show();
+		} else if (event.command === '--toggle-subtree') {
+			event.source.ariaExpanded = event.source.ariaExpanded !== 'true';
 		}
 	},
 	{ capture: true },

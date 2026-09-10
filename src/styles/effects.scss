@@ -55,6 +55,14 @@
 [p-effect~="appear"] {
 	opacity: clamp(0, var(--fragment-progress) * infinity, 1);
 }
+[p-effect~="frame"] {
+	position: absolute;
+	border: var(--frame-width, .1em) solid var(--effect-color);
+	margin: calc(var(--frame-width, .1em) * -1);
+	clip-path: xywh(0 0 calc(200% * var(--fragment-progress)) max(var(--frame-width, .1em), -100% + 200% * var(--fragment-progress)));
+	background: color-mix(in srgb, var(--effect-color) 20%, transparent);
+	pointer-events: none;
+}
 
 [p-effect~="staggering"] {
 	transition-timing-function: linear(0, 1 0.001%, 1);

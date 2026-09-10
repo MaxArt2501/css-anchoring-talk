@@ -6,7 +6,7 @@ import Code from "../components/Code.astro";
 	<h2 class="center">First stuff? 😏</h2>
 </p-slide>
 <p-slide flex gap="1" class="align-center justify-center">
-	<p-fragment p-effect="reveal" class="s05" p-effect#1:a="foo">
+	<p-fragment p-effect="reveal" class="s05">
 		<Code lang="css" code={`#help-menu {
 	position: absolute;
 	position-anchor: --help-btn;         
@@ -262,18 +262,7 @@ import Code from "../components/Code.astro";
 		--to-y: 3em;
 	}
 	.circled {
-		position: absolute;
-		height: 1.5em;
 		inset: 0 auto auto;
-
-		path {
-			fill: none;
-			stroke: red;
-			--length: 32;
-			&[aria-hidden='false'] {
-				stroke-linecap: round;
-			}
-		}
 	}
 	[p-effect='shift-top'] {
 		top: calc(var(--fragment-progress) * var(--to-y));

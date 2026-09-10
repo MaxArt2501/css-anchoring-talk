@@ -221,12 +221,14 @@ C:\\WINDOWS>`}</output>
 	</div>
 </p-slide>
 <style is:global>
-  .windows {
-		--length-1: calc((var(--slide-height) - 2em) / 480);
-		--px: var(--length-1);
+	:root {
 		--window-border-image: url("data:image/gif;base64,R0lGODlhBQAFAHAAACwAAAAABQAFAILf398AAAD///+AgIDAwMAAAAAAAAAAAAADDAgKASKjCRLBuCHrBAA7");
 		--button-border-image: url("data:image/gif;base64,R0lGODlhBQAFAHAAACwAAAAABQAFAIH///8AAADAwMCAgIACCoQRIDK5DYYMtBYAOw");
 		--button-active-border-image: url("data:image/gif;base64,R0lGODlhBQAFAHAAACwAAAAABQAFAIEAAAD///+AgIDAwMACCoQRIDLJDYYMtBYAOw");
+	}
+  .windows {
+		--length-1: calc((var(--slide-height) - 2em) / 480);
+		--px: var(--length-1);
 		
 		position: relative;
 		height: 100%;

@@ -1,0 +1,272 @@
+---
+import Code from "../components/Code.astro";
+---
+
+<p-slide>
+	<h3 class="center">Now we can do&hellip;</h3>
+	<ul class="self-center s2">
+		<li p-fragment p-effect="dropping from below">menus</li>
+		<li p-fragment p-effect="dropping from below">tooltips</li>
+	</ul>
+</p-slide>
+<p-slide>
+	<p-fragment p-effect="push-away" p-duration="3">
+		<img src="../img/push-hand.svg" alt="" p-effect="move">
+		<div class="slide">
+			<h2 class="h1 center nowrap">
+				<strong>That's all, folks!</strong>
+			</h2>
+			<div class="h1 self-center waving-hand">👋</div>
+		</div>
+	</p-fragment>
+	<p-fragment class="h3 center">We can do <strong>much more</strong>&hellip;</p-fragment>
+</p-slide>
+<style>
+	[p-effect="push-away"] {
+		position: absolute;
+		inset-inline-end: 0;
+		display: grid;
+		grid-template-columns: auto 100cqw;
+		translate: calc((100cqw + 5.92em) * var(--fragment-progress)) 0;
+		transition-timing-function: linear(0, .8 30%, .5 40% 80%, 1);
+		transition-timing-function: linear(
+			0 0%, 0.0196 4%, 0.0764 8%, 0.165 12%, 0.276 16%, 0.4 20%, 0.524 24%, 0.635 28%, 0.724 32%, 0.78 36%, 0.8 40%,
+			0.793 42%, 0.771 44%, 0.738 46%, 0.696 48%, 0.65 50%, 0.604 52%, 0.562 54%, 0.529 56%, 0.507 58%, 0.5 60% 70%,
+			0.524 76%, 0.595 82%, 0.706 88%, 0.845 94%, 1
+		);
+
+		img {
+			height: 8em;
+			--to-x: 3.6em;
+		}
+		.slide {
+			flex-grow: 1;
+			display: flex;
+			flex-direction: column;
+			min-width: 100%;
+		}
+	}
+</style>
+<p-slide>
+	<ul class="folder-tree" p-fragment p-effect="stretch">
+		<li>
+			<div>
+				<img src="../img/win95-computer-16-icon.png" alt="">
+				<span>My Computer</span>
+			</div>
+			<ul>
+				<li>
+					<div>
+						<img src="../img/win95-hdd-16-icon.png" alt="">
+						<span>MY_STUFF (C:)</span>
+						<button type="button" command="--toggle-subtree" commandfor="hard-disk-c-1"></button>
+					</div>
+					<ul id="hard-disk-c-1">
+						<li>
+							<div>
+								<img src="../img/win95-folder-explorer-16-icon.png" alt="">
+								<span>Dos</span>
+							</div>
+						</li>
+						<li>
+							<div>
+								<img src="../img/win95-folder-explorer-16-icon.png" alt="">
+								<span>Program Files</span>
+								<button type="button" command="--toggle-subtree" commandfor="program-files-1"></button>
+							</div>
+							<ul id="program-files-1" style="anchor-name: --long-line">
+								<li>
+									<div>
+										<img src="../img/win95-folder-explorer-16-icon.png" alt="">
+										<span>Microsoft Excel</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<img src="../img/win95-folder-explorer-16-icon.png" alt="">
+										<span>Microsoft Word</span>
+									</div>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<div>
+								<img src="../img/win95-folder-explorer-16-icon.png" alt="">
+								<span>Windows</span>
+								<button type="button" command="--toggle-subtree" commandfor="windows-1"></button>
+							</div>
+							<ul id="windows-1">
+								<li>
+									<div>
+										<img src="../img/win95-folder-explorer-16-icon.png" alt="">
+										<span>Fonts</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<img src="../img/win95-folder-explorer-16-icon.png" alt="">
+										<span>System</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<img src="../img/win95-folder-explorer-16-icon.png" alt="">
+										<span>Temp</span>
+									</div>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<div>
+						<img src="../img/win95-bin-16-icon.png" alt="">
+						<span>Recycle Bin</span>
+					</div>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<svg class="circled" viewBox="0 0 10 10" preserveAspectRatio="none">
+		<path d="M8,8a4.5,4 0 1 1 0,-6a2.7,2 20 1 1 -5,4.5" p-fragment p-effect="drawing" />
+	</svg>
+</p-slide>
+<style>
+	.folder-tree {
+		--length-1: .05em;
+		--px: var(--length-1);
+		--from-width: 10em;
+		--to-width: 7em;
+		--from-height: 11em;
+		font-family: MSW98UI, sans-serif;
+		border: calc(var(--px) * 2) solid;
+		border-image-slice: 40%;
+		border-image-width: calc(var(--px) * 2);
+		border-image-source: var(--button-active-border-image);
+		image-rendering: pixelated;
+		padding-inline-start: 0;
+		align-self: center;
+		pointer-events: auto;
+		margin: auto;
+
+		&, button {
+			cursor: url(../img/win95-cursor.svg), default;
+		}
+		
+		&, ul {
+			list-style-type: '';
+			position: relative;
+		}
+		ul {
+			padding-inline-start: calc(var(--px) * 16);
+		}
+		li {
+			font-size: calc(var(--px) * 11);
+			line-height: calc(var(--px) * 16);
+			padding-inline-start: calc(var(--px) * 3);
+			
+			li div::before {
+				content: '';
+				position: absolute;
+				position-anchor: --explorer-item-1;
+				border-left: var(--px) dotted gray;
+				border-bottom: var(--px) dotted gray;
+				top: 0;
+				width: calc(var(--px) * 14);
+				right: calc(anchor(left) - var(--px) * 3);
+				bottom: calc(anchor(top) - var(--px) * 10);
+				z-index: -1;
+			}
+
+			&:not(:last-of-type) {
+				> div::before {
+					border-left-color: transparent;
+				}
+			}
+		}
+		div {
+			display: flex;
+			anchor-name: --explorer-item-1;
+			anchor-scope: --explorer-item-1;
+
+			&:has(> button:not([aria-expanded='true'])) + ul {
+				display: none;
+			}
+		}
+		img {
+			height: calc(var(--px) * 16);
+			margin-right: calc(var(--px) * 4);
+			vertical-align: bottom;
+		}
+		span {
+			padding-inline-start: calc(var(--px) * 3);
+		}
+		button {
+			position: absolute;
+			position-anchor: --explorer-item-1;
+			border: var(--px) solid gray;
+			padding: var(--px);
+			width: calc(var(--px) * 9);
+			height: calc(var(--px) * 9);
+			background: linear-gradient(#000, #000) 50% 50% / var(--px) calc(var(--px) * 5) no-repeat,
+				white linear-gradient(#000, #000) 50% 50% / calc(var(--px) * 5) var(--px) no-repeat;
+			left: calc(anchor(left) - var(--px) * 15);
+			top: calc(anchor(top) + var(--px) * 5);
+			&[aria-expanded='true'] {
+				/* padding-block: calc(var(--px) * 3); */
+				background: white linear-gradient(#000, #000) 50% 50% / calc(var(--px) * 5) var(--px) no-repeat;
+			}
+		}
+	}
+	.circled {
+		position-anchor: --long-line;
+		pointer-events: none;
+		height: anchor-size();
+		width: 1em;
+		inset: anchor(top) auto auto anchor(left);
+	}
+</style>
+<p-slide flex gap="1" class="align-center justify-center">
+	<p-fragment p-effect="reveal" class="s05">
+		<Code lang="html" code={`{#:outer;highlight blue{<li>
+	{#:label;highlight red{<div>
+		<img class="icon" src="...">
+		Program Files
+	</div>}#}
+	{#:inner;highlight green{<ul>
+		<li>
+			<div>
+				<img class="icon" src="...">
+				Microsoft Excel
+				<hr class="connector">
+			</div>
+		</li>
+	</ul>}#}
+</li>}#}`}/>
+	</p-fragment>
+	<ul class="folder-tree" style="--length-1: .08em">
+		<li>
+			<div>
+				<img src="../img/win95-folder-explorer-16-icon.png" alt="">
+				<span>Program Files</span>
+			</div>
+			<ul id="program-files-1" style="anchor-name: --long-line">
+				<li>
+					<div>
+						<img src="../img/win95-folder-explorer-16-icon.png" alt="">
+						<span>Microsoft Excel</span>
+					</div>
+				</li>
+				<li>
+					<div>
+						<img src="../img/win95-folder-explorer-16-icon.png" alt="">
+						<span>Microsoft Word</span>
+					</div>
+				</li>
+			</ul>
+		</li>
+		<p-fragment p-group="outer" p-effect="blue frame" style="inset: 0"></p-fragment>
+		<p-fragment p-group="label" p-effect="red frame" style="inset: .1em .1em auto; height: calc(var(--px) * 16)"></p-fragment>
+		<p-fragment p-group="inner" p-effect="green frame" style="inset: auto .1em .1em .5em; height: calc(var(--px) * 32)"></p-fragment>
+	</ul>
+</p-slide>
