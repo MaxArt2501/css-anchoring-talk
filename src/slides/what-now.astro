@@ -233,7 +233,7 @@ import Code from "../components/Code.astro";
 		<img class="icon" src="...">
 		Program Files
 	</div>}#}
-	{#:inner;highlight green{<ul>
+	{#:inner;highlight green{<ul class="tree">
 		<li class="item">
 			<div class="label">
 				<img class="icon" src="...">
@@ -273,21 +273,21 @@ import Code from "../components/Code.astro";
 	</ul>
 </p-slide>
 <p-slide flex gap="1" class="align-center justify-center">
-	<Code lang="css" code={`.item {
-{#3;insert{	position: relative;
+	<Code lang="css" code={`.tree {
+{#7;insert{	position: relative;
 }#}}
 .label {
-{#5;-insert{{#insert{	{#2;strike{position: relative;}#}
-}#}}#}{#5;insert{	anchor-name: --item-label;
+{#9;-insert{{#2;insert{	{#6;strike{position: relative;}#}
+}#}}#}{#9;insert{	anchor-name: --item-label;
 }#}}
 .connector {
-	position: absolute;
-	width: 1.5em;
-{#5;-insert{{#1;insert{	{#4;-reveal{{#2;strike{height: ???;}#}}#}{#4;reveal{height: ???;}#}
-}#}}#}{#5;insert{	position-anchor: --item-label;
+{#insert{	position: absolute;
+}#}{#1;insert{	width: 12px;
+}#}{#9;-insert{{#3;insert{	{#8;-reveal{{#6;strike{height: {#5;-reveal{9px}#}{#5;reveal{???}#};}#}}#}{#8;reveal{height: ???;}#}
+}#}}#}{#9;insert{	position-anchor: --item-label;
 }#}{#insert{	right: anchor(left);
-}#}{#insert{	bottom: calc(anchor(bottom) + .5em);
-}#}{#8;insert{	top: 0;
+}#}{#insert{	bottom: calc(anchor(bottom) + 5px);
+}#}{#12;insert{	top: 0;
 }#}}`} class="s06"/>
 	<ul class="folder-tree" id="building" style="--length-1: .08em">
 		<li>
@@ -296,7 +296,7 @@ import Code from "../components/Code.astro";
 				<span>Program Files</span>
 			</div>
 			<ul id="program-files-1" style="anchor-name: --long-line">
-				<li p-fragment="1" p-effect="insert">
+				<li p-fragment="4" p-effect="insert">
 					<div>
 						<span>...</span>
 					</div>
@@ -305,11 +305,13 @@ import Code from "../components/Code.astro";
 					<div>
 						<img src="../img/win95-folder-explorer-16-icon.png" alt="">
 						<span>Microsoft Excel</span>
-						<p-fragment index="10" p-effect="move-inside" style="--to-y: 1lh"></p-fragment>
-						<span class="connector" p-fragment="8" p-effect="stretch" style="--from-height: var(--px); --to-height: calc(var(--px) * 26)"></span>
+						<p-fragment index="3" p-effect="height-next" />
+						<p-fragment index="12" p-effect="stretch-next" />
+						<p-fragment index="13" p-effect="move-next" />
+						<span class="connector" p-fragment="1" p-effect="stretch" style="--from-width: var(--px); --to-width: calc(var(--px) * 12)"></span>
 					</div>
 				</li>
-				<li p-fragment="9" p-effect="insert">
+				<li p-fragment="13" p-effect="insert">
 					<div>
 						<img src="../img/win95-folder-explorer-16-icon.png" alt="">
 						<span>Microsoft Word</span>
@@ -328,14 +330,98 @@ import Code from "../components/Code.astro";
 		.connector {
 			position: absolute;
 			border: dotted red;
-			border-width: 0 0 var(--px) var(--px);
-			width: calc(var(--px) * 12);
-			inset: auto auto calc(var(--px) * 7) calc(var(--px) * 7);
-			transition-property: height, translate, inset;
+			border-width: 0 0 calc(2 * var(--px)) calc(2 * var(--px));
+			inset: auto calc(100% - 19 * var(--px)) calc(var(--px) * 7) auto;
+			transition-property: height, translate, inset, --fragment-progress;
 			transition-duration: var(--fragment-duration);
+			padding: 0;
+
+			--from-width: calc(2 * var(--px));
+			--to-width: calc(12 * var(--px));
+			--from-height: calc(2 * var(--px));
 		}
-		p-fragment:has(~ .connector) {
+		p-fragment {
 			order: -1;
+			&[aria-hidden='false'] {
+				&[p-effect='height-next'] ~ .connector {
+					height: calc(9 * var(--px));
+				}
+				&[p-effect='stretch-next'] ~ .connector {
+					height: calc(25 * var(--px));
+				}
+				&[p-effect='move-next'] ~ .connector {
+					height: calc(41 * var(--px));
+				}
+			}
 		}
 	}
 </style>
+<p-slide flex gap="1" class="align-center">
+	<Code lang="html" code={`<li>
+	<div class="label"{#1;-reveal staggering{>}#}
+{#1;insert{{#1;-reveal staggering{<a}#}			{#2;strike{style="anchor-name: {#1;highlight{--item-2-1}#};"}#}>
+}#}		<img class="icon" src="...">
+		<span>Microsoft Excel</span>             
+		<hr class="connector"{#1;-reveal staggering{>}#}
+{#1;insert{{#1;-reveal staggering{<a}#}			{#2;strike{style="position-anchor: {#1;highlight{--item-2-1}#};"}#}>
+}#}	</div>
+</li>
+<li>
+	<div class="label"{#1;-reveal staggering{>}#}
+{#1;insert{{#1;-reveal staggering{<a}#}			{#2;strike{style="anchor-name: {#1;highlight blue{--item-2-2}#};"}#}>
+}#}		<img class="icon" src="...">
+		<span>Microsoft Word</span>
+		<hr class="connector"{#1;-reveal staggering{>}#}
+{#1;insert{{#1;-reveal staggering{<a}#}			{#2;strike{style="position-anchor: {#1;highlight blue{--item-2-2}#};"}#}>
+}#}	</div>
+</li>`} class="s05"/>
+	<Code lang="css" code={`.label {
+	{#3;reveal{anchor-name: --item-label;}#}{#3;-reveal{{#0;strike{anchor-name: --item-label;}#}}#}
+{#4;insert{	{#4;highlight green{anchor-scope: --item-label;}#}
+}#}}
+.connector {
+	position: absolute;
+	width: 12px;
+	{#3;reveal{position-anchor: --item-label;}#}{#3;-reveal{{#0;strike{position-anchor: --item-label;}#}}#}
+	top: 0;
+	right: anchor(left);
+	bottom: calc(anchor(bottom) + 5px);
+}`} class="s05"/>
+</p-slide>
+<p-slide>
+	<Code lang="css" code={`{#4;insert{.tree {
+	--tree-name: var({#3;highlight blue{--item-name}#}, ident('--tree{#5;reveal{-}#}'{#5;reveal{ {#5;highlight red{random(0, 99999)}#}}#}));
+}}#}.item {
+	{#2;reveal{{#3;highlight blue{--item-name}#}}#}{#2;-reveal{anchor-name}#}: {#0;highlight{ident}#}({#4;reveal{var(--tree-name) }#}'{#4;-reveal{--item}#}-' {#1;highlight green{sibling-index()}#});
+}
+{#3;insert{.label {
+	anchor-name: ident(var({#3;highlight blue{--item-name}#}) '-label');
+}
+.connector {
+	position-anchor: ident(var({#3;highlight blue{--item-name}#}) '-label');
+}
+}#}`} class="s06 self-center" />
+	<!--- ident proposal by Bramus Van Damme -->
+	<!--- inherit() proposal https://groups.google.com/a/chromium.org/g/blink-dev/c/nCUNGmfAOMU/m/YOCfBQV6BwAJ -->
+	<!--- random() proposal https://www.w3.org/TR/css-values-5/#random -->
+</p-slide>
+<p-slide gap="1">
+	<div class="browser-support self-center" p-effect="dropping from above">
+		<code class="feature">sibling-index()</code>
+		<div class="chrome">138</div>
+		<div class="firefox">154</div>
+		<div class="safari">26.2</div>
+	</div>
+	<div class="browser-support self-center" p-effect="dropping from below" p-fragment>
+		<code class="feature">random()</code>
+		<div class="chrome">155</div>
+		<div class="firefox"></div>
+		<div class="safari">26.2</div>
+	</div>
+	<div class="browser-support self-center" p-effect="dropping from below" p-fragment>
+		<code class="feature">ident()</code>
+		<div class="chrome"></div>
+		<div class="firefox"></div>
+		<div class="safari"></div>
+	</div>
+</p-slide>

@@ -356,6 +356,7 @@ hgroup {
 
 .browser-support {
 	display: inline-flex;
+	flex-wrap: wrap;
 	justify-content: center;
 	gap: .5em;
 	font-weight: bold;
@@ -371,6 +372,10 @@ hgroup {
 		-webkit-text-stroke: #fff .05em;
 		paint-order: stroke fill;
 		line-height: 1;
+	}
+	> .feature {
+		flex: 1 0 100%;
+		min-width: min-content;
 	}
 
 	@each $browser in chrome firefox safari {
