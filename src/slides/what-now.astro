@@ -228,19 +228,20 @@ import Code from "../components/Code.astro";
 </style>
 <p-slide flex gap="1" class="align-center justify-center">
 	<p-fragment p-effect="reveal" class="s05">
-		<Code lang="html" code={`{#:outer;highlight blue{<li>
-	{#:label;highlight red{<div>
+		<Code lang="html" code={`{#:outer;highlight blue{<li class="item">
+	{#:label;highlight red{<div class="label">
 		<img class="icon" src="...">
 		Program Files
 	</div>}#}
 	{#:inner;highlight green{<ul>
-		<li>
-			<div>
+		<li class="item">
+			<div class="label">
 				<img class="icon" src="...">
 				Microsoft Excel
-				<hr class="connector">
+				{#:conn;highlight yellow{<hr class="connector">}#}
 			</div>
 		</li>
+		...
 	</ul>}#}
 </li>}#}`}/>
 	</p-fragment>
@@ -268,5 +269,78 @@ import Code from "../components/Code.astro";
 		<p-fragment p-group="outer" p-effect="blue frame" style="inset: 0"></p-fragment>
 		<p-fragment p-group="label" p-effect="red frame" style="inset: .1em .1em auto; height: calc(var(--px) * 16)"></p-fragment>
 		<p-fragment p-group="inner" p-effect="green frame" style="inset: auto .1em .1em .5em; height: calc(var(--px) * 32)"></p-fragment>
+		<p-fragment p-group="conn" p-effect="yellow frame" style="inset: auto 7.7em .2em .6em; height: calc(var(--px) * 32 - .1em)"></p-fragment>
 	</ul>
 </p-slide>
+<p-slide flex gap="1" class="align-center justify-center">
+	<Code lang="css" code={`.item {
+{#3;insert{	position: relative;
+}#}}
+.label {
+{#5;-insert{{#insert{	{#2;strike{position: relative;}#}
+}#}}#}{#5;insert{	anchor-name: --item-label;
+}#}}
+.connector {
+	position: absolute;
+	width: 1.5em;
+{#5;-insert{{#1;insert{	{#4;-reveal{{#2;strike{height: ???;}#}}#}{#4;reveal{height: ???;}#}
+}#}}#}{#5;insert{	position-anchor: --item-label;
+}#}{#insert{	right: anchor(left);
+}#}{#insert{	bottom: calc(anchor(bottom) + .5em);
+}#}{#8;insert{	top: 0;
+}#}}`} class="s06"/>
+	<ul class="folder-tree" id="building" style="--length-1: .08em">
+		<li>
+			<div>
+				<img src="../img/win95-folder-explorer-16-icon.png" alt="">
+				<span>Program Files</span>
+			</div>
+			<ul id="program-files-1" style="anchor-name: --long-line">
+				<li p-fragment="1" p-effect="insert">
+					<div>
+						<span>...</span>
+					</div>
+				</li>
+				<li>
+					<div>
+						<img src="../img/win95-folder-explorer-16-icon.png" alt="">
+						<span>Microsoft Excel</span>
+						<p-fragment index="10" p-effect="move-inside" style="--to-y: 1lh">
+							<span class="connector" p-fragment="8" p-effect="stretch" style="--from-height: var(--px); --to-height: calc(var(--px) * 26)"></span>
+						</p-fragment>
+					</div>
+				</li>
+				<li p-fragment="9" p-effect="insert">
+					<div>
+						<img src="../img/win95-folder-explorer-16-icon.png" alt="">
+						<span>Microsoft Word</span>
+					</div>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</p-slide>
+<style>
+	.folder-tree#building {
+		border: none;
+		div::before {
+			content: none;
+		}
+		.connector {
+			position: absolute;
+			border: dotted red;
+			border-width: 0 0 var(--px) var(--px);
+			width: calc(var(--px) * 12);
+			inset: auto auto calc(var(--px) * 7) calc(var(--px) * 7);
+		}
+		p-fragment:has(.connector) {
+			order: -1;
+			&[aria-hidden='false'] .connector {
+			}
+			&[p-effect='move-inside'] .connector {
+				translate: calc(var(--from-x, 0q) + (var(--to-x, 0q) - var(--from-x, 0q)) * var(--fragment-progress))
+					calc(var(--from-y, 0q) + (var(--to-y, 0q) - var(--from-y, 0q)) * var(--fragment-progress));
+			}
+		}
+	}
+</style>
