@@ -305,9 +305,8 @@ import Code from "../components/Code.astro";
 					<div>
 						<img src="../img/win95-folder-explorer-16-icon.png" alt="">
 						<span>Microsoft Excel</span>
-						<p-fragment index="10" p-effect="move-inside" style="--to-y: 1lh">
-							<span class="connector" p-fragment="8" p-effect="stretch" style="--from-height: var(--px); --to-height: calc(var(--px) * 26)"></span>
-						</p-fragment>
+						<p-fragment index="10" p-effect="move-inside" style="--to-y: 1lh"></p-fragment>
+						<span class="connector" p-fragment="8" p-effect="stretch" style="--from-height: var(--px); --to-height: calc(var(--px) * 26)"></span>
 					</div>
 				</li>
 				<li p-fragment="9" p-effect="insert">
@@ -332,15 +331,11 @@ import Code from "../components/Code.astro";
 			border-width: 0 0 var(--px) var(--px);
 			width: calc(var(--px) * 12);
 			inset: auto auto calc(var(--px) * 7) calc(var(--px) * 7);
+			transition-property: height, translate, inset;
+			transition-duration: var(--fragment-duration);
 		}
-		p-fragment:has(.connector) {
+		p-fragment:has(~ .connector) {
 			order: -1;
-			&[aria-hidden='false'] .connector {
-			}
-			&[p-effect='move-inside'] .connector {
-				translate: calc(var(--from-x, 0q) + (var(--to-x, 0q) - var(--from-x, 0q)) * var(--fragment-progress))
-					calc(var(--from-y, 0q) + (var(--to-y, 0q) - var(--from-y, 0q)) * var(--fragment-progress));
-			}
 		}
 	}
 </style>
