@@ -526,8 +526,27 @@ import Code from "../components/Code.astro";
 	}
 </style>
 <p-slide flex gap="1" class="align-center">
-	<p-fragment p-effect="reveal">
-		<Code lang="css" code={`.grid {}`} />
+	<p-fragment index="6" p-effect="reveal" aria-hidden="false">
+		<p-fragment p-effect="reveal" flex="column" gap="1" class="s05">
+			<Code lang="html" code={`<div class="grid">
+	<div class="cell">
+		<div class="content">1</div>
+	</div>
+	...
+</div>`}/>
+			<Code lang="css" code={`.grid {
+	grid-template-columns: repeat(auto-fit, 2em);
+	grid-auto-rows: 2em;
+}{#insert{.cell {
+	anchor-name: --cell;
+	anchor-scope: --cell;
+}}#}{#insert{.content {
+	position: absolute;
+	position-anchor: --cell;
+{#insert{	inset: anchor(inside);
+}#}{#:last;insert{	{#:last;highlight green{transition: inset 300ms}#};
+}#}}}#}`} p-fragment p-effect="insert"/>
+		</p-fragment>
 	</p-fragment>
 	<div class="dynamic-grid-container"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
 </p-slide>
@@ -555,7 +574,7 @@ import Code from "../components/Code.astro";
 				border: .125em solid var(--brand-color);
 				background: color-mix(in srgb, var(--brand-color), transparent 50%);
 				border-radius: .25em;
-				transition: inset var(--fragment-progress);
+				transition: inset var(--fragment-duration);
 			}
 		}
 	}
