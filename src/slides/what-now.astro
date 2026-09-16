@@ -526,7 +526,7 @@ import Code from "../components/Code.astro";
 	}
 </style>
 <p-slide flex gap="1" class="align-center">
-	<p-fragment index="6" p-effect="reveal" aria-hidden="false">
+	<p-fragment index="7" p-effect="reveal" aria-hidden="false">
 		<p-fragment p-effect="reveal" flex="column" gap="1" class="s05">
 			<Code lang="html" code={`<div class="grid">
 	<div class="cell">
@@ -548,7 +548,7 @@ import Code from "../components/Code.astro";
 }#}}}#}`} p-fragment p-effect="insert"/>
 		</p-fragment>
 	</p-fragment>
-	<div class="dynamic-grid-container"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+	<div class="dynamic-grid-container"><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><p-fragment index="6">👾</p-fragment><span/><span/><span/><span/></div>
 </p-slide>
 <style>
 	.dynamic-grid-container {
@@ -557,6 +557,7 @@ import Code from "../components/Code.astro";
 		grid-template-columns: repeat(auto-fit, 2em);
 		grid-auto-rows: 2em;
 		flex-grow: 1;
+		transition: margin-bottom 300ms;
 
 		span {
 			counter-increment: dynamic-grid-item;
@@ -566,16 +567,43 @@ import Code from "../components/Code.astro";
 			&::before {
 				content: counter(dynamic-grid-item);
 				position: absolute;
-				align-content: center;
-				text-box-trim: trim-both;
-				text-align: center;
 				position-anchor: --dynamic-grid-item;
 				inset: anchor(inside);
-				border: .125em solid var(--brand-color);
-				background: color-mix(in srgb, var(--brand-color), transparent 50%);
-				border-radius: .25em;
-				transition: inset var(--fragment-duration);
+				transition: inset 300ms;
+				width: 2em;
+				height: 2em;
 			}
+		}
+		p-fragment {
+			display: none;
+			grid-area: 3 / 2 / span 2 / span 2;
+			width: .25em;
+			height: .25em;
+			transition-behavior: allow-discrete;
+			transition-property: width, height, display;
+			transition-duration: 300ms;
+			opacity: 1;
+			
+			&[aria-hidden='false'] {
+				display: block;
+				width: 4.25em;
+				height: 4.25em;
+				
+				@starting-style {
+					width: .25em;
+					height: .25em;
+				}
+			}
+		}
+		&:has(> p-fragment[aria-hidden='false']) {
+			margin-bottom: -2.25em;
+		}
+		span::before, p-fragment {
+			align-content: center;
+			text-align: center;
+			border: .125em solid var(--brand-color);
+			background: color-mix(in srgb, var(--brand-color), transparent 50%);
+			border-radius: .25em;
 		}
 	}
 </style>
