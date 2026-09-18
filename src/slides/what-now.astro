@@ -607,3 +607,283 @@ import Code from "../components/Code.astro";
 		}
 	}
 </style>
+<p-slide flex gap="1" class="align-center justify-center">
+	<p-fragment p-effect="reveal" class="s05 stack" grid>
+		<Code lang="html" code={`<li class="item">
+	<div class="label">Alice</div>
+	{#:inner;highlight green{<ul class="tree">
+		<li class="item">
+			<div class="label">
+				Bob
+				{#:conn;highlight red{<hr class="connector">}#}
+			</div>
+		</li>
+		...
+	</ul>}#}
+</li>`} p-fragment="5:css" aria-hidden="false" p-effect="from start"/>
+		<Code lang="css" code={`.connector {
+	&::before{#12:after;reveal{, &::after}#} {              
+		content: '';
+		position: absolute;              
+{#insert{		inset-block: {#:top;-reveal{?}#}{#:top;reveal{{#:top;highlight green{-4rem}#}}#} {#:bottom;-reveal{?}#}{#:bottom;reveal{{#:bottom;highlight{anchor(top)}#}}#};
+{#:after;insert{	}
+	&::before {
+}#}		inset-inline: {#:left;-reveal{?}#}{#:left;reveal{{#:left;highlight red{anchor(50%)}#}}#} {#:right;-reveal{?}#}{#:right;reveal{{#:right;highlight blue{50%}#}}#};
+{#:after;insert{	}
+	&::after {
+		inset-inline: {#:after-left;-reveal{?}#}{#:after-left;reveal{{#:after-left;highlight blue{50%}#}}#} {#:after-right;-reveal{?}#}{#:after-right;reveal{{#:after-right;highlight red{anchor(50%)}#}}#};
+}#}}#}	}
+}`} p-fragment=":css" p-effect="from below"/>
+	</p-fragment>
+	<p-fragment index="0" p-effect="tilt-and-scale-inside" p-duration="2">
+		<ul class="tree-chart">
+			<li>
+				<div class="label">
+					Alice
+				</div>
+				<ul class="tree-chart">
+					<li>
+						<div class="label">
+							Bob
+							<span class="connector"></span>
+						</div>
+					</li>
+					<li>
+						<div class="label">
+							The Chosen One
+							<span class="connector"></span>
+						</div>
+					</li>
+					<p-fragment p-effect="highlight-box green" index=":inner"/>
+				</ul>
+			</li>
+			<p-fragment p-effect="stretch" index="1" />
+			<p-fragment p-effect="stretch" index=":top" />
+			<p-fragment p-effect="stretch" index=":bottom" />
+			<p-fragment p-effect="stretch" index=":left" />
+			<p-fragment p-effect="stretch" index=":right" p-delay="1" />
+			<p-fragment p-effect="stretch" index="11:oops" />
+			<p-fragment p-effect="stretch" index=":after-right" p-delay="1" />
+		</ul>
+	</p-fragment>
+</p-slide>
+<style>
+	.tree-chart {
+		list-style-type: '';
+		padding: 0;
+		margin: 0;
+		display: flex;
+		gap: 2em;
+		position: relative;
+		width: fit-content;
+		li {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 2em;
+		}
+		.label {
+			border: .125em solid var(--brand-color);
+			background: color-mix(in srgb, var(--brand-color), transparent 50%);
+			border-radius: 1em;
+			corner-shape: squircle;
+			padding: 1em;
+			anchor-name: --item-label;
+			anchor-scope: --item-label;
+		}
+		.connector {
+			&::before, &::after {
+				content: '';
+				position: absolute;
+				position-anchor: --item-label;
+				background: #444;
+			}
+			&::after {
+				inset: -2em anchor(50%) anchor(top) calc(50% - .1em);
+				clip-path: shape(
+					from 0 0,
+					hline to .2em,
+					arc to 50% calc(50% - .1em) of calc(50% - .2em) calc(50% - .1em),
+					arc to 100% 100% of 50% calc(50% + .1em) cw,
+					hline by -.2em,
+					arc to 50% calc(50% + .1em) of calc(50% - .2em) calc(50% - .1em),
+					arc to 0 0 of 50% calc(50% + .1em) cw,
+				);
+			}
+			&::before {
+				inset: -2em calc(50% - .1em) anchor(top) anchor(50%);
+				clip-path: shape(
+					from 100% 0,
+					hline by -.2em,
+					arc to 50% calc(50% - .1em) of calc(50% - .2em) calc(50% - .1em) cw,
+					arc to 0 100% of 50% calc(50% + .1em),
+					hline by .2em,
+					arc to 50% calc(50% + .1em) of calc(50% - .2em) calc(50% - .1em) cw,
+					arc to 100% 0 of 50% calc(50% + .1em),
+				);
+			}
+		}
+	}
+	[p-effect='tilt-and-scale-inside'] {
+		container-type: inline-size;
+		flex-grow: 1;
+		transition-timing-function: linear(0, 11 10%, 7, 11, 7, 11, 7, 11, 7, 11 90%, 1);
+
+		> .tree-chart {
+			font-size: 6cqw;
+		}
+
+		.connector {
+			&::before, &::after {
+				scale: calc(1 + max(0, var(--fragment-progress) - 1) * .01);
+				rotate: calc(max(0, var(--fragment-progress) - 1) * -1deg);
+				background-image: radial-gradient(circle at center, red calc(min(1, var(--fragment-progress)) * 100%), #444 0);
+			}
+		}
+		[p-effect="stretch"] {
+			position: absolute;
+			border: 0q dashed;
+
+			&[index="1"] {
+				border-inline-start-width: .1em;
+				color: blue;
+				inset: -.5em auto auto calc(50% - .05em);
+				--to-height: calc(100% + 1.5em);
+			}
+			&[index=":top"] {
+				border-block-start-width: .1em;
+				color: green;
+				inset: calc(2.125em + 1lh) auto auto -.5em;
+				--to-width: calc(100% + 1em);
+			}
+			&[index=":bottom"] {
+				border-block-start-width: .1em;
+				color: yellow;
+				inset: calc(4.25em + 1lh) auto auto -.5em;
+				--to-width: calc(100% + 1em);
+			}
+			&[index=":left"] {
+				border-inline-start-width: .1em;
+				color: maroon;
+				inset: calc(1.75em + 1lh) auto auto 2.125em;
+				--to-height: calc(5.75em + 1lh);
+			}
+			&[index=":right"] {
+				background: #00f5;
+				inset: calc(2.225em + 1lh) auto auto 2.225em;
+				height: 2em;
+				--to-width: calc(50% - 2.225em);
+			}
+			&[index$=":oops"] {
+				border-inline-start-width: .1em;
+				color: maroon;
+				inset: calc(1.75em + 1lh) auto auto 10.925em;
+				--to-height: calc(5.75em + 1lh);
+			}
+			&[index=":after-right"] {
+				background: #f005;
+				inset: calc(2.225em + 1lh) auto auto 50%;
+				height: 2em;
+				--to-width: calc(10.925em - 50%);
+			}
+		}
+	}
+	[p-effect~="highlight-box"] {
+		position: absolute;
+		inset: -.5em;
+		border: var(--effect-color) .1em solid;
+		background: color-mix(in srgb, var(--effect-color), transparent 50%);
+		border-radius: 1em;
+		corner-shape: squircle;
+		z-index: -1;
+		clip-path: xywh(0 0 100% calc(var(--fragment-progress) * 100%));
+	}
+</style>
+<p-slide id="temani-arrow">
+	<div class="temani-circle" style="width: 170px"></div>
+	<div class="temani-circle" style="width: 100px"></div>
+
+	<div class="temani-arrow">
+		<a></a>
+		<b></b>
+		<c></c>
+		<d></d>
+	</div>
+	<p>Demo by <a href="https://codepen.io/t_afif/pen/PwNrNvP">Temani Afif</a></p>
+</p-slide>
+<style>
+	#temani-arrow {
+		.temani-arrow {
+			/* arrow size  */
+			--a: calc(1.7em / 3);
+			--b: calc(2.0em / 3);
+			/* */
+			--c: .4em; /* control line height */
+			--r: .4em; /* radius of the small cirles  */
+			/**/
+			--g: calc(1em / 3); /* gap between the arrow and circles */
+			pointer-events: none;
+			--r1: calc(170px / 2);
+			--r2: calc(100px / 2);
+		}
+
+		.temani-arrow :is(a,b,c,d) {
+			position: absolute;
+			--_x: calc(anchor(--temani-circle-a inside) + anchor-size(--temani-circle-a)/2 - .1px);
+			--_y: calc(anchor(--temani-circle-b inside) + anchor-size(--temani-circle-b)/2);
+			container-type: size;
+		}
+		.temani-arrow :is(a,b) {top:  var(--_x); bottom: var(--_y)}
+		.temani-arrow :is(a,c) {left: var(--_x); right:  var(--_y)}
+		.temani-arrow :is(c,d) {top:  var(--_y); bottom: var(--_x)}
+		.temani-arrow :is(b,d) {left: var(--_y); right:  var(--_x)}
+
+		.temani-arrow :is(a,b,c,d):before {
+			content: "";
+			position: absolute;
+			inset: calc(100% - var(--a)) 0 calc(-1*var(--a)) calc(100% - hypot(100cqh,100cqw));
+			rotate: atan(100cqh/100cqw);
+			border-image: conic-gradient(#556270) fill 0//999px;
+			transform-origin: right;
+			--_m0: sign(hypot(100cqh,100cqw) - var(--r1) - var(--r2) - 3*(var(--b) + var(--g)));
+			--_m1: sign(hypot(100cqh,100cqw) - var(--r1) - var(--r2));
+			padding-inline: 
+				calc((var(--r1) + var(--g))*var(--_m0)) 
+				calc((var(--r2) + var(--g))*var(--_m0));
+			opacity: calc(sign(1cqw)*sign(1cqh)*var(--_m1));
+			--_d: calc(var(--r)*cos(asin(var(--c)/(2*var(--r)))));
+			clip-path: if(style(--_m0 = 1):
+				polygon(var(--b) 0,var(--b) var(--c),calc(100% - var(--b)) var(--c),calc(100% - var(--b)) 0,100% 50%,calc(100% - var(--b)) 100%,calc(100% - var(--b)) calc(100% - var(--c)),var(--b) calc(100% - var(--c)),var(--b) 100%,0 50%) content-box;
+				else:
+				shape(from var(--_d) var(--c),
+						arc to var(--_d) calc(100% - var(--c)) of var(--r) large,
+					hline to calc(100% - var(--_d)), 
+						arc to calc(100% - var(--_d)) var(--c) of var(--r) large
+				););
+		}
+		.temani-arrow b {scale: -1  1}
+		.temani-arrow c {scale:  1 -1}
+		.temani-arrow d {scale: -1 -1}
+
+		.temani-circle {
+			position: absolute;
+			left: 10%;
+			top: 10%;
+			aspect-ratio: 1;
+			background: #45ADA8;
+			border-radius: 50%;
+			anchor-name: --temani-circle-a;
+		}
+		.temani-circle + .temani-circle {
+			background: var(--brand-color);
+			left: 72%;
+			top: 40%;
+			anchor-name: --temani-circle-b;
+		}
+		p {
+			font-size: 50%;
+			position: absolute;
+			inset: auto 2em 2em auto;
+		}
+	}
+</style>

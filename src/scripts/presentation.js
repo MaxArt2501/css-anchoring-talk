@@ -122,3 +122,39 @@ deck.addEventListener(
 	},
 	{ capture: true },
 );
+
+// Temani Afif's arrow demo
+const circles = document.querySelectorAll('.temani-circle');
+const isCircleDragged = [];
+const circleOrigin = [];
+
+circles.forEach((circle, index) => {
+	isCircleDragged[index] = 0;
+	circleOrigin[index] = [];
+	let controller;
+	const slide = circle.closest('p-slide');
+  circle.addEventListener('mousedown', (event) => {
+    isCircleDragged[index] = 1;
+    const rect = event.target.getBoundingClientRect();
+		const slideRect = slide.getBoundingClientRect();
+    circleOrigin[index] = [
+			event.clientX - rect.x + slideRect.x,
+			event.clientY - rect.y + slideRect.y
+		];
+		controller = new AbortController();
+
+		document.addEventListener('mousemove', (event) => {
+			circles.forEach((circle, index) => {
+				if (isCircleDragged[index]) {
+					circle.style.left = (event.clientX - circleOrigin[index][0]) + 'px';
+					circle.style.top = (event.clientY - circleOrigin[index][1]) + 'px';
+				}
+			});
+		}, { signal: controller.signal });
+		document.addEventListener('mouseup', () => {
+			isCircleDragged.fill(0);
+			controller.abort();
+		}, { signal: controller.signal });
+  });
+});
+
