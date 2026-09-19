@@ -799,6 +799,16 @@ import Code from "../components/Code.astro";
 		clip-path: xywh(0 0 100% calc(var(--fragment-progress) * 100%));
 	}
 </style>
+<p-slide gap="1">
+	<code class="h5 center" p-effect="dropping from above">@container anchored(flip-inline)</code>
+	<p-fragment class="h2 bold center uppercase" p-effect="fade and zoom" style="--scale-from: 10">yes</p-fragment>
+	<p-fragment class="s05 center" p-effect="zoom">but</p-fragment>
+	<p-fragment class="browser-support self-center s1.5" p-effect="dud">
+		<div class="chrome" p-effect="from start">143</div>
+		<div class="firefox" p-effect="from below"></div>
+		<div class="safari" p-effect="from end"></div>
+	</p-fragment>
+</p-slide>
 <p-slide id="temani-arrow">
 	<div class="temani-circle" style="width: 170px"></div>
 	<div class="temani-circle" style="width: 100px"></div>
