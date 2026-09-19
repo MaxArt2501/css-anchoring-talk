@@ -530,17 +530,17 @@ import Code from "../components/Code.astro";
 		<p-fragment p-effect="reveal" flex="column" gap="1" class="s05">
 			<Code lang="html" code={`<div class="grid">
 	<div class="cell">
-		<div class="content">1</div>
+		{#2;highlight blue{{#2;reveal{<div class="content">}#}1{#2;reveal{</div>}#}}#}
 	</div>
 	...
 </div>`}/>
 			<Code lang="css" code={`.grid {
 	grid-template-columns: repeat(auto-fit, 2em);
 	grid-auto-rows: 2em;
-}{#insert{.cell {
+}{#2;insert{.cell {
 	anchor-name: --cell;
 	anchor-scope: --cell;
-}}#}{#insert{.content {
+}}#}{#3;insert{.{#3;highlight blue{content}#} {
 	position: absolute;
 	position-anchor: --cell;
 {#insert{	inset: anchor(inside);
