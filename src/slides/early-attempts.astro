@@ -136,64 +136,98 @@ import pkg from '../../package.json';
   }
 </style>
 <p-slide>
-  <div id="fixed-scroll">
-    <h4>Ortus et institutio (1841-1865)</h4>
-    <h6>Familia medicorum rei publicae faventium</h6>
+  <svg viewBox="0 40 640 580" width="0">
+    <g id="latinWiki">
+      <text y="40">Ortus et institutio (1841-1865)</text>
+      <text y="102">Familia medicorum rei publicae faventium</text>
+      <text>
+        <tspan x="0" y="159">Georgius Beniaminus Clemenceau natus est die 28 Septembris</tspan>
+        <tspan x="0" y="188">1841 in vico Mouilleron-en-Pareds, in domo avorum</tspan>
+        <tspan x="0" y="216">maternorum, gentis Gautreau, ubi mater Emma parere maluerat.</tspan>
+        <tspan x="0" y="245">Familia Clemenceau ex agrorum dominis et medicis regionis</tspan>
+        <tspan x="0" y="273">quae Bocage vocatur erat: medici in ea gente inde a saeculo</tspan>
+        <tspan x="0" y="302">septimo decimo fuerunt, et proavus, Petrus Paulus Clemenceau,</tspan>
+        <tspan x="0" y="330">exercituum occidentalium medicus tempore rerum novarum,</tspan>
+        <tspan x="0" y="359">postea in concilio legibus ferendis sedit. Duo praedia familia</tspan>
+        <tspan x="0" y="387">possidebat: Aubraie, villam in vico La Réorthe, et Le Colombier,</tspan>
+        <tspan x="0" y="416">villam rusticam apud Mouchamps, ubi Georgius sepultus est.</tspan>
+        <tspan x="0" y="444">Cum illa Vendea regi et Ecclesiae fidelissima esset, familia tamen</tspan>
+        <tspan x="0" y="473">Clemenceau partes contrarias sequebatur, eorum scilicet qui</tspan>
+        <tspan x="0" y="501">Bleus vocabantur: hi erant cives litteris culti, </tspan><tspan class="link-like">Voltarii</tspan><tspan> studiosi, rei</tspan>
+        <tspan x="0" y="530">publicae dediti.</tspan>
+      </text>
+      <text>
+        <tspan x="0" y="579">E schola privata Monfort egressus, Georgius lyceum Namnetense</tspan>
+        <tspan x="0" y="608">frequentavit, quod hodie eius nomine appellatur. Discipulus</tspan>
+        <tspan x="0" y="636">ingeniosus sed inconstans, amorem Graeciae antiquae ibi</tspan>
+        <tspan x="0" y="665">concepit, cuius litteras per totam vitam lectitavit; Romam contra</tspan>
+        <tspan x="0" y="693">aversabatur. Primis studiis anno 1858 absolutis, die 1 Novembris</tspan>
+        <tspan x="0" y="721">eiusdem anni scholae medicinae Namnetensi nomen dedit, ubi</tspan>
+        <tspan x="0" y="750">tres annos studuit et probationem eorum quos externos</tspan>
+        <tspan x="0" y="778">(externes) vocant superavit; anno 1861 Lutetiam petivit ut studia</tspan>
+        <tspan x="0" y="807">perficeret.</tspan>
+      </text>
+    </g>
+  </svg>
+  <div class="fixed-scroll">
+    <svg viewBox="0 40 640 580">
+      <use href="#latinWiki" p-fragment="1" p-effect="move" style="--to-y: -220px" />
+      <rect x="630" y="40" height="400" width="10" rx="5" fill="#0005" p-fragment="1" p-effect="fade & move" style="--to-y: 180px"/>
+    </svg>
     <p-fragment index="0" p-effect="move natural" p-duration="2">
       <img src="../img/cursor-windows.svg" class="cursor" p-fragment="1" aria-hidden="false">
     </p-fragment>
-    <p-fragment index="0" p-effect="fade" p-delay="2" popover>
+    <p-fragment index="0" p-effect="fade" p-delay="2" popover="manual">
       François-Marie Arouet, 1694-1778
     </p-fragment>
-    <p>
-      Georgius Beniaminus Clemenceau natus est die 28 Septembris 1841 in vico
-      Mouilleron-en-Pareds, in domo avorum maternorum, gentis Gautreau, ubi
-      mater Emma parere maluerat. Familia Clemenceau ex agrorum dominis et
-      medicis regionis quae Bocage vocatur erat: medici in ea gente inde a
-      saeculo septimo decimo fuerunt, et proavus, Petrus Paulus Clemenceau,
-      exercituum occidentalium medicus tempore rerum novarum, postea in concilio
-      legibus ferendis sedit. Duo praedia familia possidebat: Aubraie, villam in
-      vico La Réorthe, et Le Colombier, villam rusticam apud Mouchamps, ubi
-      Georgius sepultus est. Cum illa Vendea regi et Ecclesiae fidelissima
-      esset, familia tamen Clemenceau partes contrarias sequebatur, eorum
-      scilicet qui Bleus vocabantur: hi erant cives litteris culti, <a href=""
-        >Voltarii</a
-      > studiosi, rei publicae dediti.
-    </p>
-    <p>
-      E schola privata Monfort egressus, Georgius lyceum Namnetense
-      frequentavit, quod hodie eius nomine appellatur. Discipulus ingeniosus sed
-      inconstans, amorem Graeciae antiquae ibi concepit, cuius litteras per
-      totam vitam lectitavit; Romam contra aversabatur. Primis studiis anno 1858
-      absolutis, die 1 Novembris eiusdem anni scholae medicinae Namnetensi nomen
-      dedit, ubi tres annos studuit et probationem eorum quos externos
-      (externes) vocant superavit; anno 1861 Lutetiam petivit ut studia
-      perficeret.
-    </p>
-    <p-fragment index="1"></p-fragment>
   </div>
 </p-slide>
-<style>
-  #fixed-scroll {
-    padding-inline: 3em;
-    font-size: 0.45em;
-    overflow: auto;
+<style is:global>
+  #latinWiki {
+    text {
+      font-family: inherit;
+      font-size: 21px;
+      font-weight: normal;
+      text-anchor: start;
+
+      &:first-of-type {
+        font-size: 31.5px;
+      }
+      &:nth-of-type(-n + 2) {
+        font-weight: bold;
+        alignment-baseline: hanging;
+      }
+      tspan {
+        alignment-baseline: hanging;
+        &.link-like {
+          fill: var(--brand-color);
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .fixed-scroll {
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    gap: 1em;
+    justify-content: center;
 
     [p-effect="move natural"] {
-      --from-x: -7em;
-      --from-y: 7.5em;
-      --to-x: 22em;
-      --to-y: 17em;
+      --from-x: -13em;
+      --from-y: 2em;
+      --to-x: 3.3em;
+      --to-y: 9.8em;
+
+      > img {
+        height: 1em;
+      }
     }
     [p-effect="fade"] {
       position: absolute;
       display: block;
-      inset: 27.5em auto auto 26.5em;
+      inset: 34.8em auto auto 33.5em;
+      font-size: 45%;
       filter: drop-shadow(0 0 .25em #000);
-      --tooltip-bg: ivory;
+      --tooltip-bg: color-mix(in srgb, var(--brand-color), white 70%);
     }
   }
 </style>

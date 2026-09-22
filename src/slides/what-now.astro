@@ -48,6 +48,143 @@ import Code from "../components/Code.astro";
 	}
 </style>
 <p-slide>
+	<div class="fixed-scroll">
+    <svg viewBox="-40 40 720 200">
+      <use href="#latinWiki" p-fragment="1" p-effect="move" y="-300" style="--to-y: -150px" />
+      <rect x="-40" y="40" height="200" width="720" fill="none" stroke="currentColor" stroke-width="4"/>
+      <rect x="665" y="45" height="100" width="10" rx="5" fill="#0005" p-fragment="1" p-effect="move" style="--to-y: 40px"/>
+    </svg>
+		<p-fragment index="1" p-effect="move-inside">
+			<p-fragment index="0" p-effect="fade" popover="manual">
+				François-Marie Arouet, 1694-1778
+			</p-fragment>
+		</p-fragment>
+  </div>
+	<svg class="circled" viewBox="0 0 10 10" preserveAspectRatio="none">
+		<path d="M8,8a4.5,4 0 1 1 0,-6a2.7,2 20 1 1 -5,4.5" p-fragment p-effect="drawing" />
+	</svg>
+</p-slide>
+<style>
+	.fixed-scroll {
+		align-items: center;
+		svg {
+			width: 14.4em;
+			height: 4em;
+		}
+		[popover] {
+			display: block;
+			inset-block-start: 29.5em;
+		}
+		[p-effect="move-inside"] {
+			--number-1: var(--fragment-progress);
+			[popover] {
+				inset-block-start: calc(29.5em - var(--number-1) * 6.7em);
+			}
+		}
+		+ .circled {
+			inset: 3.1em auto auto 14em;
+			width: 10em;
+			height: 3em;
+		}
+	}
+</style>
+<p-slide class="stack outside-borders">
+	<svg viewBox="-40 40 720 440">
+		<use href="#latinWiki" y="-300" />
+	</svg>
+	<Code lang="css" theme="github-light" code={`.dialog {
+	background: #fff;
+	border-radius: 0.5rem;
+	border: none;
+	...
+{#insert{	anchor-name: --dlg;
+}#}}
+{#0:btn;insert{.close-button {
+	position: absolute;
+{#insert{	position-anchor: --dlg;
+}#}	top: {#:fix;reveal{calc(anchor(inside) }#}{#:clip;reveal{-}#}{#:fix;reveal{ }#}{#:clip;reveal{1rem}#}{#:clip;-reveal{0}#}{#:fix;reveal{)}#};
+	right: {#:fix;reveal{calc(anchor(inside) }#}{#:clip;reveal{-}#}{#:fix;reveal{ }#}{#:clip;reveal{1rem}#}{#:clip;-reveal{0}#}{#:fix;reveal{)}#};
+	border-radius: 100vmax;
+	border: 1px solid white;            
+}}#}`} class="self-center the-dialog"><p-fragment class="scrollbar" index=":btn" /></Code>
+	<p-fragment index=":btn">
+		<p-fragment index="4:fix" p-effect="btn-fix">
+			<p-fragment index="1:clip" p-effect="btn-clip">
+				<div class="close-button"></div>
+			</p-fragment>
+		</p-fragment>
+	</p-fragment>
+	<svg class="circled" viewBox="0 0 10 10" preserveAspectRatio="none">
+		<path d="M8,8a4.5,4 0 1 1 0,-6a2.7,2 20 1 1 -5,4.5" p-fragment p-effect="drawing" />
+	</svg>
+</p-slide>
+<style>
+	.outside-borders {
+		--slide-bg: #aaa;
+
+		svg:not(.circled) {
+			width: 23em;
+			filter: blur(0.05em);
+		}
+		.the-dialog {
+			z-index: 1;
+			width: max-content;
+			margin-inline: auto;
+			height: 12em;
+			overflow: auto;
+			scrollbar-width: none;
+			anchor-name: --the-dialog;
+		}
+		.scrollbar {
+			position: absolute;
+			position-anchor: --the-dialog;
+			inset: calc(anchor(inside) + .1em) calc(anchor(inside) + .1em) auto auto;
+			width: .25em;
+			height: 50%;
+			background: gray;
+			border-radius: 100vmax;
+		}
+		.close-button {
+			border: .1em solid #aaa;
+			border-radius: 100vmax;
+			width: 1.5em;
+			height: 1.5em;
+			position: relative;
+
+			&::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(white, white) 50% / 1em .1em no-repeat, linear-gradient(white, white) 50% / .1em 1em no-repeat var(--brand-color);
+				rotate: 45deg;
+				border-radius: 100vmax;
+			}
+			p-fragment:has(&) {
+				position: absolute;
+			}
+		}
+		> p-fragment {
+			position-anchor: --the-dialog;
+			inset: anchor(top) anchor(right) auto auto; 
+			z-index: 2;
+		}
+		[p-effect="btn-clip"] {
+			right: 0;
+			translate: calc(50% * var(--fragment-progress)) calc(-50% * var(--fragment-progress));
+			clip-path: inset(calc(var(--percentage-1) * var(--fragment-progress)) calc(var(--percentage-1) * var(--fragment-progress)) 0 0);
+		}
+		[p-effect="btn-fix"] {
+			right: 0;
+			--percentage-1: calc(50% * (1 - var(--fragment-progress)));
+		}
+		.circled {
+			z-index: 3;
+			inset: -1em 1.5em auto auto;
+			width: 2em;
+		}
+	}
+</style>
+<p-slide>
 	<ul class="folder-tree" p-fragment p-effect="stretch">
 		<li>
 			<div>
