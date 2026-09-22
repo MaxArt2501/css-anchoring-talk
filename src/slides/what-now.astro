@@ -184,6 +184,188 @@ import Code from "../components/Code.astro";
 		}
 	}
 </style>
+<p-slide flex gap="1" class="align-center">
+	<div grid class="stack align-center" p-fragment p-effect="reveal">
+		<Code lang="html" code={`<nav>
+	<ul>
+		<li><a href="...">Home</a></li>
+		<li><a href="...">Blog</a></li>
+		<li><a href="...">Links</a></li>
+	</ul>
+</nav>`} class="s05" p-fragment=":toCss" p-effect="move from start" p-initially-visible />
+		<Code lang="css" code={`nav {
+	position: relative;
+
+	&::before {
+		content: '';
+		position: absolute;
+{#3;insert{		position-anchor: --current-item;
+}#}		inset: {#4:anchor;-reveal{100% 0 0}#}{#:anchor;reveal{anchor(inside{#6:fback;reveal{, {#:fback;highlight{0}#}}#})}#};
+{#:fback;insert{		inset-block-start: anchor(top, {#:fback;highlight{100%}#});
+}#}{#7:xition;insert{		transition: inset 250ms;
+}#}	}
+{#2:aName;insert{
+	li{#5:onHover;reveal{:hover}#} {
+		anchor-name: --current-item;
+	}
+}#}}`} class="s05" p-fragment=":toCss" p-effect="move from below" />
+	</div>
+	<nav>
+		<p-fragment index=":aName"></p-fragment>
+		<p-fragment index=":anchor"></p-fragment>
+		<p-fragment index=":onHover"></p-fragment>
+		<p-fragment index=":fback"></p-fragment>
+		<p-fragment index=":xition"></p-fragment>
+		<ul>
+			<li><a href=".">Home</a></li>
+			<li><a href=".">Blog</a></li>
+			<li><a href=".">Links</a></li>
+		</ul>
+	</nav>
+</p-slide>
+<style>
+	nav {
+		position: relative;
+		align-self: center;
+		font-size: 70%;
+		ul {
+			display: flex;
+			list-style-type: '';
+			margin: 0;
+			padding: 0;
+		}
+		li {
+			padding: .5em 1em;
+		}
+		a {
+			text-decoration: none;
+			color: inherit;
+		}
+		&::after {
+			content: '';
+			position: absolute;
+			inset: 100% 0 0;
+			border: .125em solid var(--brand-color);
+			background: color-mix(in srgb, var(--brand-color), transparent 50%);
+			z-index: -1;
+			border-radius: .5em;
+			corner-shape: squircle;
+		}
+		&:has([index=':aName'][aria-hidden='false']) {
+			&::after {
+				position-anchor: --current-item;
+			}
+			li {
+				anchor-name: --current-item;
+			}
+		}
+		&:has([index=':anchor'][aria-hidden='false']) {
+			&::after {
+				inset: anchor(inside);
+			}
+		}
+		&:has([index=':onHover'][aria-hidden='false']) {
+			li {
+				anchor-name: none;
+				&:hover {
+					anchor-name: --current-item;
+				}
+			}
+		}
+		&:has([index=':fback'][aria-hidden='false']) {
+			&::after {
+				inset: anchor(top, 100%) anchor(inside, 0) anchor(inside, 0);
+			}
+		}
+		&:has([index=':xition'][aria-hidden='false']) {
+			&::after {
+				transition: inset 300ms;
+			}
+		}
+	}
+</style>
+<p-slide flex gap="1" class="align-center">
+	<p-fragment index="7" p-effect="reveal" aria-hidden="false">
+		<p-fragment p-effect="reveal" flex="column" gap="1" class="s05">
+			<Code lang="html" code={`<div class="grid">
+	<div class="cell">
+		{#2;highlight blue{{#2;reveal{<div class="content">}#}1{#2;reveal{</div>}#}}#}
+	</div>
+	...
+</div>`}/>
+			<Code lang="css" code={`.grid {
+	grid-template-columns: repeat(auto-fit, 2em);
+	grid-auto-rows: 2em;
+}{#2;insert{.cell {
+	anchor-name: --cell;
+	anchor-scope: --cell;
+}}#}{#3;insert{.{#3;highlight blue{content}#} {
+	position: absolute;
+	position-anchor: --cell;
+{#insert{	inset: anchor(inside);
+}#}{#:last;insert{	{#:last;highlight green{transition: inset 300ms}#};
+}#}}}#}`} p-fragment p-effect="insert"/>
+		</p-fragment>
+	</p-fragment>
+	<div class="dynamic-grid-container"><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><p-fragment index="6">👾</p-fragment><span/><span/><span/><span/></div>
+</p-slide>
+<style>
+	.dynamic-grid-container {
+		display: grid;
+		gap: .25em;
+		grid-template-columns: repeat(auto-fit, 2em);
+		grid-auto-rows: 2em;
+		flex-grow: 1;
+		transition: margin-bottom 300ms;
+
+		span {
+			counter-increment: dynamic-grid-item;
+			anchor-name: --dynamic-grid-item;
+			anchor-scope: --dynamic-grid-item;
+			
+			&::before {
+				content: counter(dynamic-grid-item);
+				position: absolute;
+				position-anchor: --dynamic-grid-item;
+				inset: anchor(inside);
+				transition: inset 300ms;
+				width: 2em;
+				height: 2em;
+			}
+		}
+		p-fragment {
+			display: none;
+			grid-area: 3 / 2 / span 2 / span 2;
+			width: .25em;
+			height: .25em;
+			transition-behavior: allow-discrete;
+			transition-property: width, height, display;
+			transition-duration: 300ms;
+			opacity: 1;
+			
+			&[aria-hidden='false'] {
+				display: block;
+				width: 4.25em;
+				height: 4.25em;
+				
+				@starting-style {
+					width: .25em;
+					height: .25em;
+				}
+			}
+		}
+		&:has(> p-fragment[aria-hidden='false']) {
+			margin-bottom: -2.25em;
+		}
+		span::before, p-fragment {
+			align-content: center;
+			text-align: center;
+			border: .125em solid var(--brand-color);
+			background: color-mix(in srgb, var(--brand-color), transparent 50%);
+			border-radius: .25em;
+		}
+	}
+</style>
 <p-slide>
 	<ul class="folder-tree" p-fragment p-effect="stretch">
 		<li>
@@ -562,188 +744,6 @@ import Code from "../components/Code.astro";
 		<div class="safari"></div>
 	</div>
 </p-slide>
-<p-slide flex gap="1" class="align-center">
-	<div flex="column" p-fragment p-effect="reveal">
-		<Code lang="html" code={`<nav>
-	<ul>
-		<li><a href="...">Home</a></li>
-		<li><a href="...">Blog</a></li>
-		<li><a href="...">Links</a></li>
-	</ul>
-</nav>`} class="s05" p-fragment=":toCss" p-effect="insert" p-initially-visible />
-		<Code lang="css" code={`nav {
-	position: relative;
-
-	&::before {
-		content: '';
-		position: absolute;
-{#3;insert{		position-anchor: --current-item;
-}#}		inset: {#4:anchor;-reveal{100% 0 0}#}{#:anchor;reveal{anchor(inside{#6:fback;reveal{, {#:fback;highlight{0}#}}#})}#};
-{#:fback;insert{		inset-block-start: anchor(top, {#:fback;highlight{100%}#});
-}#}{#7:xition;insert{		transition: inset 250ms;
-}#}	}
-{#2:aName;insert{
-	li{#5:onHover;reveal{:hover}#} {
-		anchor-name: --current-item;
-	}
-}#}}`} class="s05" p-fragment=":toCss" p-effect="insert" />
-	</div>
-	<nav>
-		<p-fragment index=":aName"></p-fragment>
-		<p-fragment index=":anchor"></p-fragment>
-		<p-fragment index=":onHover"></p-fragment>
-		<p-fragment index=":fback"></p-fragment>
-		<p-fragment index=":xition"></p-fragment>
-		<ul>
-			<li><a href=".">Home</a></li>
-			<li><a href=".">Blog</a></li>
-			<li><a href=".">Links</a></li>
-		</ul>
-	</nav>
-</p-slide>
-<style>
-	nav {
-		position: relative;
-		align-self: center;
-		font-size: 70%;
-		ul {
-			display: flex;
-			list-style-type: '';
-			margin: 0;
-			padding: 0;
-		}
-		li {
-			padding: .5em 1em;
-		}
-		a {
-			text-decoration: none;
-			color: inherit;
-		}
-		&::after {
-			content: '';
-			position: absolute;
-			inset: 100% 0 0;
-			border: .125em solid var(--brand-color);
-			background: color-mix(in srgb, var(--brand-color), transparent 50%);
-			z-index: -1;
-			border-radius: .5em;
-			corner-shape: squircle;
-		}
-		&:has([index=':aName'][aria-hidden='false']) {
-			&::after {
-				position-anchor: --current-item;
-			}
-			li {
-				anchor-name: --current-item;
-			}
-		}
-		&:has([index=':anchor'][aria-hidden='false']) {
-			&::after {
-				inset: anchor(inside);
-			}
-		}
-		&:has([index=':onHover'][aria-hidden='false']) {
-			li {
-				anchor-name: none;
-				&:hover {
-					anchor-name: --current-item;
-				}
-			}
-		}
-		&:has([index=':fback'][aria-hidden='false']) {
-			&::after {
-				inset: anchor(top, 100%) anchor(inside, 0) anchor(inside, 0);
-			}
-		}
-		&:has([index=':xition'][aria-hidden='false']) {
-			&::after {
-				transition: inset 300ms;
-			}
-		}
-	}
-</style>
-<p-slide flex gap="1" class="align-center">
-	<p-fragment index="7" p-effect="reveal" aria-hidden="false">
-		<p-fragment p-effect="reveal" flex="column" gap="1" class="s05">
-			<Code lang="html" code={`<div class="grid">
-	<div class="cell">
-		{#2;highlight blue{{#2;reveal{<div class="content">}#}1{#2;reveal{</div>}#}}#}
-	</div>
-	...
-</div>`}/>
-			<Code lang="css" code={`.grid {
-	grid-template-columns: repeat(auto-fit, 2em);
-	grid-auto-rows: 2em;
-}{#2;insert{.cell {
-	anchor-name: --cell;
-	anchor-scope: --cell;
-}}#}{#3;insert{.{#3;highlight blue{content}#} {
-	position: absolute;
-	position-anchor: --cell;
-{#insert{	inset: anchor(inside);
-}#}{#:last;insert{	{#:last;highlight green{transition: inset 300ms}#};
-}#}}}#}`} p-fragment p-effect="insert"/>
-		</p-fragment>
-	</p-fragment>
-	<div class="dynamic-grid-container"><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><p-fragment index="6">👾</p-fragment><span/><span/><span/><span/></div>
-</p-slide>
-<style>
-	.dynamic-grid-container {
-		display: grid;
-		gap: .25em;
-		grid-template-columns: repeat(auto-fit, 2em);
-		grid-auto-rows: 2em;
-		flex-grow: 1;
-		transition: margin-bottom 300ms;
-
-		span {
-			counter-increment: dynamic-grid-item;
-			anchor-name: --dynamic-grid-item;
-			anchor-scope: --dynamic-grid-item;
-			
-			&::before {
-				content: counter(dynamic-grid-item);
-				position: absolute;
-				position-anchor: --dynamic-grid-item;
-				inset: anchor(inside);
-				transition: inset 300ms;
-				width: 2em;
-				height: 2em;
-			}
-		}
-		p-fragment {
-			display: none;
-			grid-area: 3 / 2 / span 2 / span 2;
-			width: .25em;
-			height: .25em;
-			transition-behavior: allow-discrete;
-			transition-property: width, height, display;
-			transition-duration: 300ms;
-			opacity: 1;
-			
-			&[aria-hidden='false'] {
-				display: block;
-				width: 4.25em;
-				height: 4.25em;
-				
-				@starting-style {
-					width: .25em;
-					height: .25em;
-				}
-			}
-		}
-		&:has(> p-fragment[aria-hidden='false']) {
-			margin-bottom: -2.25em;
-		}
-		span::before, p-fragment {
-			align-content: center;
-			text-align: center;
-			border: .125em solid var(--brand-color);
-			background: color-mix(in srgb, var(--brand-color), transparent 50%);
-			border-radius: .25em;
-		}
-	}
-</style>
 <p-slide flex gap="1" class="align-center justify-center">
 	<p-fragment p-effect="reveal" class="s05 stack" grid>
 		<Code lang="html" code={`<li class="item">
@@ -938,7 +938,10 @@ import Code from "../components/Code.astro";
 </style>
 <p-slide gap="1">
 	<code class="h5 center" p-effect="dropping from above">@container anchored(flip-inline)</code>
-	<p-fragment class="h2 bold center uppercase" p-effect="fade and zoom" style="--scale-from: 10">yes</p-fragment>
+	<div class="stack align-center justify-center center">
+		<p-fragment index="0" p-effect="fade and zoom" p-initially-visible style="--scale-to: 3">❓</p-fragment>
+		<p-fragment index="0" class="h2 bold uppercase" p-effect="fade and zoom" style="--scale-from: 10">yes</p-fragment>
+	</div>
 	<p-fragment class="s05 center" p-effect="zoom">but</p-fragment>
 	<p-fragment class="browser-support self-center s1.5" p-effect="dud">
 		<div class="chrome" p-effect="from start">143</div>
@@ -1034,3 +1037,7 @@ import Code from "../components/Code.astro";
 		}
 	}
 </style>
+<p-slide id="temani-arrow">
+	<img class="full-media" src="../img/temani-graph.webp" alt="A graph with 6 nodes and various connecting lines, some straight, some curved, some from the most appropriate side, some from the node's center, entirely made in CSS" style="padding: 2em">
+	<p class="s05">Demo by <a href="https://codepen.io/t_afif/pen/emgBWeg">Temani Afif</a></p>
+</p-slide>

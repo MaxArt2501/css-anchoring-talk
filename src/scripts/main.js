@@ -114,12 +114,11 @@ function updateProgressBar() {
 
 deck.addEventListener('p-slides.slidechange', ({ detail: { slide } }) => {
 	loadLazyMedia(slide);
-	changeHash(slide);
-	updateProgressBar();
-
 	toggleNavButtons();
 	setTimeout(() => {
 		deck.style.setProperty('--current-slide-bg', getComputedStyle(slide).getPropertyValue('--slide-bg'));
+		changeHash(slide);
+		updateProgressBar();
 	});
 });
 
