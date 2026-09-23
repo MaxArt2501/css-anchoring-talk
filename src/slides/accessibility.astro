@@ -1,0 +1,85 @@
+---
+import Code from "../components/Code.astro";
+---
+
+<p-slide>
+	<p-fragment p-effect="roll-away" index="1" flex="column" p-duration="10">
+		<p-fragment p-effect="boing stretch" id="a11y-circle" p-duration="4" />
+		<div class="head"></div>
+		<svg viewBox="0 0 512 512" class="body">
+			<path d="M432,112.8l-.45.12h0l-.42.13c-1,.28-2,.58-3,.89-18.61,5.46-108.93,30.92-172.56,30.92-59.13,0-141.28-22-167.56-29.47a73.79,73.79,0,0,0-8-2.58c-19-5-32,14.3-32,31.94,0,17.47,15.7,25.79,31.55,31.76v.28l95.22,29.74c9.73,3.73,12.33,7.54,13.6,10.84,4.13,10.59.83,31.56-.34,38.88l-5.8,45L150.05,477.44q-.15.72-.27,1.47l-.23,1.27h0c-2.32,16.15,9.54,31.82,32,31.82,19.6,0,28.25-13.53,32-31.94h0s28-157.57,42-157.57,42.84,157.57,42.84,157.57h0c3.75,18.41,12.4,31.94,32,31.94,22.52,0,34.38-15.74,32-31.94-.21-1.38-.46-2.74-.76-4.06L329,301.27l-5.79-45c-4.19-26.21-.82-34.87.32-36.9a1.09,1.09,0,0,0,.08-.15c1.08-2,6-6.48,17.48-10.79l89.28-31.21a16.9,16.9,0,0,0,1.62-.52c16-6,32-14.3,32-31.93S451,107.81,432,112.8Z" fill="#fff"/>
+		</svg>
+	</p-fragment>
+</p-slide>
+<style>
+	#a11y-circle {
+		border-radius: 100%;
+		background-color: #154F92;
+		border: 0.25em solid transparent;
+		box-shadow: inset 0 0 0 .25em white;
+		width: 10em;
+		align-self: center;
+		flex: 0 0 auto;
+		anchor-name: --a11y-circle;
+		--from-width: 10em;
+		--from-height: 100em;
+		--to-height: 10em;
+	}
+	.head, .body {
+		position: absolute;
+		position-anchor: --a11y-circle;
+		margin-inline: auto;
+	}
+	.head {
+		width: 2em;
+		aspect-ratio: 1;
+		border-radius: 100vmax;
+		background-color: #fff;
+		inset: calc(anchor(top) + 1em) 0 auto;
+	}
+	.body {
+		height: 8em;
+		inset: auto 0 calc(anchor(bottom) + 1em);
+	}
+	[p-effect='roll-away'] {
+		translate: calc(pi * 7.5em * var(--fragment-progress)) 0;
+		rotate: calc(pi * 1.5rad * var(--fragment-progress));
+	}
+</style>
+<p-slide>
+	<div class="h3 center"><strong>CSS Anchor Positioning</strong> has <b>no impact</b> on accessibility.</div>
+</p-slide>
+<p-slide>
+	<div class="h3 center"><strong>You</strong> make a difference.</div>
+</p-slide>
+<p-slide>
+	<p class="center" p-effect="zoom">Just <span aria-label="one">☝️</span> thing&hellip;</p>
+</p-slide>
+<p-slide gap="0.5">
+	<h2 class="center" p-effect="from above"><strong>Implicit</strong> anchors</h2>
+	<div class="stack justify-center" p-effect="from below">
+		<Code lang="html" code={`<button type="button"{#1;-fade soon{>}#}
+{#1;insert{{#1;hidden{<i}#}	{#3:pop;-reveal{command}#}{#:pop;reveal{popovertargetaction}#}="show{#:pop;-reveal{-popover}#}"
+	{#2;highlight blue{{#:pop;-reveal{commandfor}#}{#:pop;reveal{popovertarget}#}="menu"}#}
+>}#}	Open menu
+</button>
+<div{#0;reveal{ {#0;highlight{popover}#}}#} id="menu">
+	...
+</div>`} class="s07 self-center" p-fragment=":js" p-effect="from start" p-initially-visible/>
+		<Code code={`popoverBtn.addEventListener(
+	'click',
+	() => {
+		window.menu.showPopover({#:src;-reveal{);}#}{#:src;reveal{{ }#}
+{#:src;insert{			source: {#:src;highlight green{popoverBtn}#}
+		});
+}#}	}
+);`} class="s07 self-center" p-fragment=":js" p-effect="from end"/>
+	</div>
+</p-slide>
+<p-slide>
+	<div class="h4 center">What else is <strong>implicitly anchored</strong>?</div>
+	<ul class="s1.5 self-center">
+		<li p-fragment p-effect="dropping from below"><code>::before</code>, <code>::after</code></li>
+		<li p-fragment p-effect="dropping from below"><code>::picker(select)</code></li>
+	</ul>
+</p-slide>

@@ -64,6 +64,12 @@
 	pointer-events: none;
 }
 
-[p-effect~="staggering"] {
-	transition-timing-function: linear(0, 1 0.001%, 1);
+[p-effect~="staggering"], [p-effect~="soon"] {
+	transition-timing-function: linear(0, 1 0.01%, 1);
+}
+[p-effect~="late"] {
+	transition-timing-function: linear(0, 0 99.99%, 1);
+}
+[p-effect="hidden"] {
+	display: none !important;
 }
