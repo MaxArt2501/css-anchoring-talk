@@ -1,0 +1,95 @@
+<p-slide flex="row" class="align-center justify-start">
+	<div class="ring"></div>
+	<div class="ring"></div>
+	<div class="ring" p-effect="boing stretch" p-duration="4"></div>
+	<h1>Links</h1>
+</p-slide>
+<style>
+	.ring {
+		border-radius: 100vmax;
+		height: 3em;
+		box-shadow: 0 0 0 .125em var(--slide-bg, #fff), inset -.25em -.25em .25em #444, inset .25em .25em .25em #aaa, inset 0 0 0 .5em gray;
+		margin-inline: -.6em;
+		flex: 0 0 auto;
+
+		&:not([p-effect]) {
+			width: 5em;
+		}
+
+		&:nth-child(2 of .ring) {
+			height: .5em;
+			z-index: 1;
+		}
+		&:nth-child(3 of .ring) {
+			--from-width: 20em;
+			--to-width: 5em;
+		}
+	}
+	h1 {
+		margin-inline-start: .5em;
+	}
+</style>
+<p-slide>
+	<ul>
+		<li>
+			Introducing the CSS anchor positioning API - Una Kravets
+			<a href="https://developer.chrome.com/blog/anchor-positioning-api">
+				developer.chrome.com/blog/anchor-positioning-api
+			</a>
+		</li>
+		<li>
+			Getting Started with Anchor Positioning - Josh Comeau
+			<a href="https://www.joshwcomeau.com/css/anchor-positioning/">
+				joshwcomeau.com/css/anchor-positioning
+			</a>
+		</li>
+		<li>
+			Animating CSS Grid Layouts with CSS Anchor Positioning - Bramus Van Damme
+			<a href="https://www.bram.us/2026/09/07/animating-css-grid-layouts-with-css-anchor-positioning/">
+				bram.us/2026/09/07/animating-css-grid-layouts-with-css-anchor-positioning
+			</a>
+		</li>
+	</ul>
+</p-slide>
+<p-slide>
+	<ul>
+		<li>
+			Connecting Circles With Anchor Positioning - Temani Afif
+			<a href="https://css-tip.com/connected-circles/">
+				css-tip.com/connected-circles
+			</a>
+		</li>
+		<li>
+			Anchor Positioning in Space - Schalk Neethling
+			<a href="https://anchor-positioning-in-space.schalkneethling.com/">
+				anchor-positioning-in-space.schalkneethling.com
+			</a>
+		</li>
+		<li>
+			Getting a close button to hang off of a dialog - Darin Senneff
+			<a href="https://www.darins.page/articles/close-button-hang-dialog">
+				darins.page/articles/close-button-hang-dialog
+			</a>
+		</li>
+	</ul>
+</p-slide>
+<style>
+	ul {
+		list-style-type: '';
+		font-size: 80%;
+		margin: 0;
+		padding: 0;
+
+		a {
+			display: block;
+		}
+	}
+	li {
+		margin-bottom: 1.5em;
+		&:not(:last-of-type)::after {
+			content: '⚓';
+			position: absolute;
+			position-area: bottom;
+		}
+	}
+</style>
