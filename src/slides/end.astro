@@ -11,10 +11,10 @@ import QRSlides from './qrslides.astro';
 </p-slide>
 <QRSlides />
 <p-slide>
-	<Code code={`for (const question of questions) {
-  console.log(
-    await answer(question)
-  );
+	<Code lang="css" code={`@each --question in --questions {
+	.answer {
+		content: --answer(--question);
+	}
 }`} class="self-center"
 	/>
 </p-slide>

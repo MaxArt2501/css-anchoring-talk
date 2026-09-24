@@ -73,13 +73,16 @@ import Code from "../components/Code.astro";
 		}
 		[popover] {
 			display: block;
-			inset-block-start: 29.5em;
+			inset-block-start: 36.6em;
 		}
 		[p-effect="move-inside"] {
 			--number-1: var(--fragment-progress);
 			[popover] {
-				inset-block-start: calc(29.5em - var(--number-1) * 6.7em);
+				inset-block-start: calc(36.6em - var(--number-1) * 6.7em);
 			}
+		}
+		[p-effect="fade"] {
+			inset: 41.7em auto auto 32.7em;
 		}
 		+ .circled {
 			inset: 3.1em auto auto 14em;

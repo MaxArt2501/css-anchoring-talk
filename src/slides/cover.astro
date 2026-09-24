@@ -4,7 +4,9 @@
     <p class="strike-out">CSS takes us far away</p>
   </hgroup>
   <div flex class="justify-between align-center">
-    <img src="../img/anchor.svg" h="5" alt="Anchor">
+    <img src="../img/anchor.svg" alt="Anchor" id="coverAnchor" p-fragment="0" p-effect="dropping launch" p-duration="10">
+    <div id="coverChain" p-fragment="0" p-effect="dropping launch" p-duration="10" p-delay="10"></div>
+    <img src="../img/galleon.svg" alt="Galleon" id="coverGalleon">
     <div flex="column" class="align-end">
       <img src="../img/ctc.png" alt="Logo of Come To Code" h="3" flex>
       <span class="strike-out">
@@ -13,6 +15,34 @@
     </div>
   </div>
 </p-slide>
+<style>
+  .cover {
+    color: white;
+    --slide-bg: var(--wc-bg);
+  }
+  #coverAnchor {
+    height: 2.5em;
+    translate: calc(12em - 12em * cos(180deg - var(--fragment-progress, 0) * 180deg)) calc(2em - 12em * sin(var(--fragment-progress, 0) * 180deg));
+    rotate: calc(180deg * (1 - var(--fragment-progress)));
+    anchor-name: --cover-anchor;
+  }
+  #coverChain {
+    position: absolute;
+    position-anchor: --cover-anchor;
+    inset: anchor(center) calc(-2em + 21em * var(--fragment-progress, 0)) 3em anchor(center);
+    border: solid #000;
+    border-width: .1em .1em 0 0;
+    border-top-right-radius: 100% calc(100% * (1 - var(--fragment-progress, 0)));
+    anchor-name: --cover-chain;
+  }
+  #coverGalleon {
+    height: 5em;
+    position: absolute;
+    position-anchor: --cover-chain;
+    scale: -1 1;
+    inset: auto auto calc(anchor(bottom) - .25em) calc(anchor(right) - 1.2em);
+  }
+</style>
 <p-slide grid="2" class="about-me">
   <gfy-blob
     clearcoatroughness="0.4"
@@ -54,14 +84,6 @@
   </div>
 </p-slide>
 <style lang="scss">
-  .cover {
-    color: white;
-    --slide-bg: var(--wc-bg);
-
-    img {
-      filter: drop-shadow(.03em 0.06em .1em black);
-    }
-  }
   gfy-blob {
     height: 12em;
     width: 12em;
