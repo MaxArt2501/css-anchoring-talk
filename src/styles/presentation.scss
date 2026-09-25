@@ -239,17 +239,3 @@ a {
 		color: var(--brand-color);
 	}
 }
-
-.circled {
-	position: absolute;
-	height: 1.5em;
-
-	path {
-		fill: none;
-		stroke: red;
-		--length: 32;
-		&[aria-hidden='false'] {
-			stroke-linecap: round;
-		}
-	}
-}
