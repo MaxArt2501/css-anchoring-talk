@@ -98,7 +98,8 @@ import pkg from '../../package.json';
 					<span>Sh<u>u</u>t Down...</span>
 				</button>
 			</div>
-			<div class="taskbar"   ></div>
+			<div class="taskbar"></div>
+			<time datetime="2026-09-26T13:01:00.000Z">15:01</time>
 		</footer>
 		<dialog id="notepad" class="window">
 			<header>
@@ -254,6 +255,16 @@ C:\\WINDOWS>`}</output>
       box-shadow: inset 0 var(--px) 0 0 #fff;
       display: flex;
       gap: calc(var(--px) * 4);
+
+			time {
+				inset-inline-start: auto;
+				border-image-slice: 40%;
+				border-image-width: calc(var(--px) * 2);
+				border-image-source: var(--button-active-border-image);
+				padding: calc(var(--px) * 4);
+				height: calc(var(--px) * 18);
+				align-self: center;
+			}
     }
     button {
       font-family: inherit;
@@ -520,6 +531,7 @@ C:\\WINDOWS>`}</output>
     .taskbar {
       display: flex;
       gap: calc(var(--px) * 3);
+			flex-grow: 1;
 
       > .btn {
 				font-weight: bold;

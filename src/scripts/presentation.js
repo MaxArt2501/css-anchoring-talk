@@ -158,3 +158,14 @@ circles.forEach((circle, index) => {
   });
 });
 
+const windowsClocks = document.querySelectorAll('.windows footer time');
+const formatter = new Intl.DateTimeFormat(undefined, { timeStyle:'short' });
+const writeTime = () => {
+	const now = new Date();
+	windowsClocks.forEach(time => {
+		time.dateTime = now.toISOString();
+		time.textContent = formatter.format(now);
+	});
+};
+setInterval(writeTime, 10000);
+writeTime();
