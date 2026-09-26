@@ -177,10 +177,10 @@ import pkg from '../../package.json';
     <p-fragment index="0" p-effect="move natural" p-duration="2">
       <img src="../img/cursor-windows.svg" class="cursor" p-fragment="1" aria-hidden="false">
     </p-fragment>
-    <p-fragment index="0" p-effect="fade" p-delay="2" popover="manual">
-      François-Marie Arouet, 1694-1778
-    </p-fragment>
   </div>
+  <p-fragment index="0" p-effect="fade" p-delay="2" class="popover">
+    François-Marie Arouet, 1694-1778
+  </p-fragment>
 </p-slide>
 <style is:global>
   #latinWiki {
@@ -221,14 +221,14 @@ import pkg from '../../package.json';
         height: 1em;
       }
     }
-    [p-effect="fade"] {
-      position: absolute;
-      display: block;
-      inset: 41.6em auto auto 32em;
-      font-size: 45%;
-      filter: drop-shadow(0 0 .25em #000);
-      --tooltip-bg: color-mix(in srgb, var(--brand-color), white 70%);
-    }
+  }
+  .popover {
+    position: absolute;
+    display: block;
+    inset: 21em auto auto 32em;
+    font-size: 45%;
+    filter: drop-shadow(0 0 .25em #000);
+    --tooltip-bg: color-mix(in srgb, var(--brand-color), white 70%);
   }
 </style>
 <p-slide>

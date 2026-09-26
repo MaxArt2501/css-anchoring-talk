@@ -162,7 +162,7 @@ body {
 	}
 }
 
-[popover] {
+[popover], .popover {
 	margin: 0 0 0.75rem;
 	inset: auto auto anchor(start) anchor(start);
 	padding: 0.25em 0.5em;
